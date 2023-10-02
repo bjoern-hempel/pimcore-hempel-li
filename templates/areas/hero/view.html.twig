@@ -1,0 +1,105 @@
+<!-- HERO START -->
+<section class="hero index{{ simple_mode|default(null) ? '' : ' auto-height' }}">
+    <header class="header">
+        {% set navStartNode = document.getProperty('navigation_root') %}
+
+        {% if not navStartNode is instanceof('\\Pimcore\\Model\\Document\\Page') %}
+            {% if pimcore_site_is_request() %}
+                {% set site = pimcore_site_current() %}
+                {% set navStartNode = site.getRootDocument() %}
+            {% else %}
+                {% set navStartNode = pimcore_document(1) %}
+            {% endif %}
+        {% endif %}
+
+        {% set mainNavigation = pimcore_build_nav({active: document, root: navStartNode}) %}
+
+        {% set menuRenderer = pimcore_nav_renderer('menu') %}
+
+        <div class="logo left-part"><a href="{{ navStartNode }}{% if locale is same as('de') %}de{% endif %}{% if locale is same as('en') %}en{% endif %}"><h2>it</h2></a></div>
+        <div class="right-part short-contact">
+            <ul>
+                <li class="next language-selector">
+                    {% if locale is same as('de') %}
+                        <span class="light selected">de</span>
+                    {% else %}
+                        <a class="dark" href="/de">de</a>
+                    {% endif %} |
+                    {% if locale is same as('en') %}
+                        <span class="light selected">en</span>
+                    {% else %}
+                        <a class="dark" href="/en">en</a>
+                    {% endif %}
+                </li>
+                <li class="next"><a class="dark" href="mailto:{{ 'personal.email'|trans|raw }}">{{ 'personal.email'|trans|raw }}</a></li>
+
+                {% for page in mainNavigation %}
+                    {% if page.isVisible() and menuRenderer.accept(page) %}
+                        {% set hasChildren = page.hasPages() %}
+
+                        {% if not hasChildren %}
+                            <li class="next"><a class="dark {{ document.id == navStartNode.id ? 'active' : '' }}" href="{{ page.getHref() }}">{{ page.getLabel()|trans }}</a></li>
+                        {% else %}
+                            <li class="next"><a class="dark {{ document.id == navStartNode.id ? 'active' : '' }}" href="{{ page.getHref() }}">{{ page.getLabel()|trans }}</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{ document.id == navStartNode.id ? 'active' : '' }}"
+                                   href="{{ page.getHref() }}" aria-expanded="false"
+                                   id="navbarDropdown_{{ page.id }}" role="button"
+                                   data-bs-toggle="dropdown" aria-haspopup="true">
+                                    {{ page.getLabel()|trans }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown_{{ page.id }}">
+                                    {% for child in page.getPages() %}
+                                        {% if child.isVisible() and menuRenderer.accept(child) %}
+                                            <li><a class="dropdown-item" href="{{ child.getHref() }}">{{ child.getLabel()|trans }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                <li><a class="light" href="tel:+49-151-70070706">(+49-151-70070706)</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="inner-hero">
+        <canvas class="background-img gradient-hero"></canvas>
+
+        {% if not simple_mode|default(null) %}
+            <div class="background-map gradient-hero svg"></div>
+            <div class="container hero-content index">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <div class="profile-img ">{{ pimcore_image('profile_image', {
+                            thumbnail: 'heroProfileImage'
+                        }) }}</div>
+                        <div class="profile-name mt-30"><h2>{{ pimcore_input('author') }}<span>{{ pimcore_input('subtitle') }}</span></h2></div>
+                        <div class="profile-social mt-30">
+                            <ul class="social">
+                                {% for linkSocial in linkSocials %}
+                                    {% if editmode %}
+                                        <li>
+                                            <a href="{{ linkSocial.link() }}">
+                                                <i class="{{ linkSocial.css_class }}"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a href="{{ linkSocial.link() }}">
+                                                <i class="{{ linkSocial.css_class }}"></i>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <a class="top scroll" href="#about"><i class="icon-down-open"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+<!-- HERO END -->

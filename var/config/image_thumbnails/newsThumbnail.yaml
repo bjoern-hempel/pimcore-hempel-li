@@ -1,0 +1,28 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    newsThumbnail:
+                        items:
+                            -
+                                method: cover
+                                arguments:
+                                    width: 414
+                                    height: 227
+                                    positioning: center
+                                    forceResize: true
+                        medias: {  }
+                        name: newsThumbnail
+                        description: ''
+                        group: ''
+                        format: SOURCE
+                        quality: 85
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1695249699
+                        creationDate: 1695249674
+                        preserveAnimation: false

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Björn Hempel - DevOps Engineer und Software Architekt">
+    <meta name="generator" content="Pimcore">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    {% if not document is defined or not document %}
+        {% set document = pimcore_document(1) %}
+    {% endif %}
+
+    {% if document is instanceof('\\Pimcore\\Model\\Document\\Link') %}
+        {% set document = document.getObject() %}
+    {% endif %}
+
+    {% block seo %}
+        {% if document.getTitle() is not empty %}
+            {% do pimcore_head_title().set(document.getTitle()) %}
+        {% endif %}
+
+        {% if document.getDescription() is not empty %}
+            {% do pimcore_head_meta().setDescription(document.getDescription()) %}
+        {% endif %}
+    {% endblock %}
+
+    {% block layout_head_meta deferred %}
+        {{  pimcore_head_title() }}
+        {{  pimcore_head_meta() }}
+
+        {% if pimcore_placeholder('canonical').count() %}
+            <link rel="canonical" href="{{ pimcore_placeholder('canonical') }}">
+        {% endif %}
+    {% endblock %}
+
+    {% block head_stylesheets deferred %}
+        {{ pimcore_head_link() }}
+    {% endblock %}
+
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_script_tags('app') }}
+
+    {% block page_css %}{% endblock %}
+
+    <!-- Start Matomo Code -->
+    <script type="text/javascript">
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//matomo.ixno.de/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript';
+            g.async = true;
+            g.src = u + 'matomo.js';
+            s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+</head>
+<body>
+<div class="loader">
+    <div class="loader-inner">
+        <svg width="120" height="220" viewbox="0 0 100 100" class="loading-spinner" version="1.1"
+             xmlns="http://www.w3.org/2000/svg">
+            <circle class="spinner" cx="50" cy="50" r="21" fill="#ffffff" stroke-width="3"/>
+        </svg>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="inner-wrapper">
+
+        {# Start: Content #}
+        {% block content_mid %}{% endblock %}
+        {# Finish: Content #}
+
+        {# Start: Footer #}
+        {{ pimcore_inc(document.getProperty('footer')) }}
+        {# Finish: Footer #}
+    </div>
+</div>
+
+{% block page_js %}{% endblock %}
+</body>
+</html>

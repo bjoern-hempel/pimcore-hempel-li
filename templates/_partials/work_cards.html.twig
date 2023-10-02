@@ -1,0 +1,35 @@
+{% if works is defined and (works|length > 0) %}
+    {% for work in works %}
+        {% if loop.first %}
+            <div class="row mb-30">
+        {% endif %}
+
+        <div class="col-md-4 col-sm-4">
+            <a href="{{ work.link }}">
+                <div class="box work {% for category in work.categories %}{{ category.name is defined ? category.name : '' }} {% endfor %}">
+                    <div class="box-img">{{ (work.image is defined ? work.image.thumbnail('newsThumbnail').html : '')|raw }}</div>
+                    <div class="box-content">
+                        <h4>
+                            <span class="title-description">
+                                <span class="title">{{ work.title is defined ? work.title : '' }}</span>
+                                <span class="description">{{ work.description is defined ? work.description : '' }}</span>
+                            </span>
+
+                            {% if work.categories is defined and (work.categories|length > 0) %}
+                                <span class="category">in {% for category in work.categories %}{{ category.name is defined ? category.name : '' }}{% endfor %}</span>
+                            {% endif %}
+                        </h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% if loop.index % 3 == 0 %}
+            </div><div class="row mb-30">
+        {% endif %}
+
+        {% if loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

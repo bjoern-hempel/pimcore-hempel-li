@@ -1,0 +1,108 @@
+<!-- ABOUT START -->
+<section id="about" class="about pt-100 pb-100 ">
+    <div class="container section-content pt-100 pb-100 white">
+        <div class="block-main-title"><span class="uppercase">{{ 'about'|trans }}.</span></div>
+        <div class="row">
+            <div class="col-md-9 col-md-push-2 offset-content">
+                <div class="stamp-profile">{{ pimcore_image('profile_image', {
+                    thumbnail: 'heroProfileImage'
+                }) }}</div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="block-content">
+                            <div class="profile-name">
+                                <h2>{{ pimcore_input('author') }}<span>{{ pimcore_input('subtitle') }}</span></h2>
+                            </div>
+                            <p class="lead-quote mt-40 mb-20 text-center">
+                                <q cite="https://www.quotes.net/mquote/60268">{{ pimcore_input('quote') }}</q><br>
+                                &mdash; {{ pimcore_input('quote_author') }} &mdash;
+                            </p>
+                            <p class="lead mt-40 mb-10">
+                                <span>{{ 'philosophy-development'|trans }}</span><br>
+                                {% for aboutPhilosophyDevelopment in aboutPhilosophyDevelopmentMain %}
+                                    {% if aboutPhilosophyDevelopment.link is defined %}
+                                        {% if aboutPhilosophyDevelopment.bold %}
+                                            <span><a href="{{ aboutPhilosophyDevelopment.link }}">{{ aboutPhilosophyDevelopment.name }}</a></span>,
+                                        {% else %}
+                                            <a href="{{ aboutPhilosophyDevelopment.link }}">{{ aboutPhilosophyDevelopment.name }}</a>,
+                                        {% endif %}
+                                    {% else %}
+                                        {% if aboutPhilosophyDevelopment.bold %}
+                                            <span>{{ aboutPhilosophyDevelopment.name }}</span>,
+                                        {% else %}
+                                            {{ aboutPhilosophyDevelopment.name }},
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                <strong>{{ 'furthermore'|trans }}</strong>:
+                                {% for aboutPhilosophyDevelopment in aboutPhilosophyDevelopmentNotMain %}
+                                    {% if aboutPhilosophyDevelopment.link is not empty %}
+                                        {% if aboutPhilosophyDevelopment.bold %}
+                                            <span><a href="{{ aboutPhilosophyDevelopment.link }}">{{ aboutPhilosophyDevelopment.name }}</a></span>{% if not loop.last %}, {% endif %}
+                                        {% else %}
+                                            <a href="{{ aboutPhilosophyDevelopment.link }}">{{ aboutPhilosophyDevelopment.name }}</a>{% if not loop.last %}, {% endif %}
+                                        {% endif %}
+                                    {% else %}
+                                        {% if aboutPhilosophyDevelopment.bold %}
+                                            <span>{{ aboutPhilosophyDevelopment.name }}</span>{% if not loop.last %}, {% endif %}
+                                        {% else %}
+                                            {{ aboutPhilosophyDevelopment.name }}{% if not loop.last %}, {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                            <p class="lead mb-40">
+                                <span>{{ 'philosophy-release-management'|trans }}</span><br>
+                                {% for aboutPhilosophyReleasemanagement in aboutPhilosophyReleasemanagements %}
+                                    {% if aboutPhilosophyReleasemanagement.link is not empty %}
+                                        <a href="{{ aboutPhilosophyReleasemanagement.link }}">{{ aboutPhilosophyReleasemanagement.name }}</a>{% if not loop.last %} ↷ {% endif %}
+                                    {% else %}
+                                        {{ aboutPhilosophyReleasemanagement.name }}{% if not loop.last %} ↷ {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                            <p>
+                                <span>{{ 'key-facts'|trans }}</span>:
+                                {{ pimcore_input('key_facts') }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="block-content">
+                            <ul class="info-list">
+                                <li class="indent-list"><span>{{ 'birthdate'|trans }}</span> {{ 'personal.birthday'|trans }}</li>
+                                <li class="indent-list"><span>{{ 'phone'|trans }}</span> ({{ 'personal.telephone'|trans|raw }})</li>
+                                <li class="indent-list"><span>{{ 'email'|trans }}</span><a href="mailto:{{ 'personal.email'|trans|raw }}">{{ 'personal.email'|trans|raw }}</a></li>
+                                <li class="indent-list"><span>{{ 'projects'|trans }}</span>
+                                    {% for linkProject in linkProjects %}
+                                        <a href="{{ linkProject.link }}" title="{{ linkProject.name }}">{{ linkProject.name }}</a>{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </li>
+                                <li class="indent-list"><span>{{ 'location'|trans }}</span> {{ 'personal.address'|trans }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9 download">
+                        <a class="scroll but opc-2 mt-30 mr-10" href="#work">{{ 'portfolio'|trans }} <span class="arrow left"><i class="icon-angle-right"></i></span></a>
+
+                        {{ pimcore_link('curriculumVitae', {
+                            'class': 'scroll but opc-2 mt-30 mr-10',
+                            'textSuffix': ' <span class="arrow left"><i class="icon-angle-right"></i>'
+                        }) }}
+
+                        {% if locale is not same as('de') %}
+                            <a class="scroll but opc-2 mt-30" href="/de">{{ 'read-in-german'|trans }} <span class="arrow left"><i class="icon-angle-right"></i></span></a>
+                        {% endif %}
+
+                        {% if locale is not same as('en') %}
+                            <a class="scroll but opc-2 mt-30" href="/en">{{ 'read-in-english'|trans }} <span class="arrow left"><i class="icon-angle-right"></i></span></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ABOUT END -->

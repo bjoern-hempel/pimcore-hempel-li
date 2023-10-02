@@ -1,0 +1,16 @@
+{
+    "$schema": "resource.schema.json",
+    "version": "0.1.24",
+    "date": "Saturday, September 16, 2023 - 22:54:59",
+    "license": "Copyright (c) 2023 Björn Hempel <bjoern@hempel.li>",
+    "authors": [
+        "Björn Hempel <bjoern@hempel.li>"
+    ],
+    "driver-name": "MySQL - unknown version",
+    "environment": "Test",
+    "host-name": "Local Development",
+    "php-version": "8.2.8",
+    "symfony-version": "6.3.4",
+    "pimcore-version": "v11.0.9",
+    "composer-version": "2.5.1"
+}

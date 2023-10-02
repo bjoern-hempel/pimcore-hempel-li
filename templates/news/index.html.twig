@@ -1,0 +1,78 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block page_css %}{% endblock %}
+
+{% block content_mid %}
+    {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
+
+    <section id="news" class="works pt-100 pb-100 text-center">
+        <div class="container section-content pt-100 pb-100 grey news-search">
+            <div class="block-main-title"><span class="uppercase">{{ 'news'|trans }}.</span></div>
+            <div class="row">
+                <div class="col-md-9 col-md-push-2 offset-content">
+                    <!-- NEWS LISTING START -->
+                    <div class="row news">
+                        <div class="col-md-12">
+                            <ul id="category" class="filter mb-80">
+                                <li><a data-filter="all" href="#" class="active">All</a></li>
+                                {% for news_category in news_categories %}
+                                    <li><a data-filter="{{ news_category.name }}" href="#">{{ news_category.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- NEWS CARDS START -->
+                            {% if news|length > 0 %}
+                                {% include '_partials/news_cards.html.twig' %}
+                                {% include '_partials/pagination.html.twig' %}
+                            {% else %}
+                                <div class="row mb-30"><b>Try another keyword?</b> No results found.</div>
+                            {% endif %}
+                            <!-- NEWS CARDS END -->
+                        </div>
+                    </div>
+                    <!-- NEWS LISTING END -->
+
+                    <div class="row news-search">
+                        <div class="col-md-12">
+                            <form class="news-search-form">
+                                <div class="row mb-30 news-pagination">
+                                    <div class="col-md-12 col-sm-12 mb-20">
+                                        <input type="hidden" name="sortBy" value="{{ app.request.get('sortBy', 'date-desc') }}" class="news-sort-by-hidden">
+                                        <input type="hidden" name="perPage" value="{{ app.request.get('perPage', 6) }}" class="news-per-page-hidden">
+                                        <input type="text" id="search" class="form-control" placeholder="Search news" name="query" value="{{ app.request.get('query', '') }}">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-20">
+                                        <select id="categories" class="form-select categories-select" name="categories[]" multiple style="width: 150px;">
+                                            {% for news_category in news_categories %}
+                                                <option value="{{ news_category.id }}" {{ news_category.id in app.request.get('categories', []) ? 'selected' : '' }}>
+                                                    {{ news_category.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <select id="perPage" class="form-select news-per-page" name="perPage">
+                                            <option value="6" {{ app.request.get('perPage', 6) == '6' ? 'selected' : '' }}>{{ 'per-page'|trans({'%pages%': 6}) }}</option>
+                                            <option value="12" {{ app.request.get('perPage', 12) == '12' ? 'selected' : '' }}>{{ 'per-page'|trans({'%pages%': 12}) }}</option>
+                                            <option value="18" {{ app.request.get('perPage', 18) == '18' ? 'selected' : '' }}>{{ 'per-page'|trans({'%pages%': 18}) }}</option>
+                                        </select>
+                                        <select id="sortBy" class="form-select news-sort-by" name="sortBy">
+                                            <option value="date-desc" {{ app.request.get('sortBy', 'date-desc') == 'date-desc' ? 'selected' : '' }}>{{ 'sort-by-latest'|trans }}</option>
+                                            <option value="date-asc" {{ app.request.get('sortBy', 'date-asc') == 'date-asc' ? 'selected' : '' }}>{{ 'sort-by-oldest'|trans }}</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">{{ 'search'|trans }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_js %}
+    {{ encore_entry_script_tags('news-listing') }}
+{% endblock %}

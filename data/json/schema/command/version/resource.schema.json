@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "description": "Used for validation of resource.json JSON file.",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+(-(dev|rc)(.\\d+)?)?$"
+        },
+        "date": {
+            "type": "string"
+        },
+        "license": {
+            "type": "string"
+        },
+        "authors": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "driver-name": {
+            "type": "string"
+        },
+        "environment": {
+            "type": "string"
+        },
+        "host-name": {
+            "type": "string"
+        },
+        "php-version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "symfony-version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "pimcore-version": {
+            "type": "string",
+            "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+        },
+        "composer-version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        }
+    },
+    "required": [
+        "version",
+        "date",
+        "license",
+        "authors",
+        "driver-name",
+        "environment",
+        "php-version",
+        "symfony-version",
+        "pimcore-version",
+        "composer-version"
+    ],
+    "additionalProperties": false
+}

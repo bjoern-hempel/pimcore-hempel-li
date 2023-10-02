@@ -1,0 +1,24 @@
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="inner-footer">
+        <canvas class="background-img gradient-footer"></canvas>
+        <div class="col-md-12 text-center footer-content pt-100 pb-100"><a class="top scroll" href="#top"><i class="icon-up-open"></i></a>
+            <div class="logo"><h2>it</h2></div>
+            <p class="mt-10">&copy; 2023 bjoern hempel. Build on top of Pimcore 11, Symfony 6.3 and PHP 8.2. | <a href="/news">news</a></p>
+            <ul class="social mt-15">
+                {% for linkSocial in linkSocials %}
+                    {% if editmode %}
+                        <li>{{ linkSocial.link }}</li>
+                    {% else %}
+                        <li>
+                            <a href="{{ linkSocial.link() }}">
+                                <i class="{{ linkSocial.css_class }}"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</footer>
+<!-- FOOTER END -->

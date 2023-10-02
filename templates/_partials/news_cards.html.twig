@@ -1,0 +1,41 @@
+{% if news is defined and (news|length > 0) %}
+    {% for news_item in news %}
+        {% if loop.first %}
+            <div class="row mb-30">
+        {% endif %}
+
+        <div class="col-md-4 col-sm-4">
+            <a href="{{ news_item.slug is defined ? news_item.slug : '' }}">
+                <div class="box work {% for tag in news_item.tags %}{{ tag.name is defined ? tag.name : '' }} {% endfor %}">
+                    <div class="box-img">{{ (news_item.image is defined ? news_item.image.thumbnail('newsThumbnail').html : '')|raw }}</div>
+                    <div class="box-content">
+                        <h4>
+                            <span class="title-description">
+                                <span class="title">{{ news_item.title is defined ? news_item.title : '' }}</span>
+                                <span class="description">{{ news_item.short_description is defined ? news_item.short_description : '' }}</span>
+                            </span>
+
+                            {% if news_item.tags is defined and (news_item.tags|length > 0) %}
+                                <span class="category">in
+                                    {% for tag in news_item.tags %}{{ tag.name is defined ? tag.name : '' }}{% endfor %}
+                                </span>
+                            {% endif %}
+
+                            <span class="date">
+                                {{ news_item.posted is defined ? news_item.posted : '' }}
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% if loop.index % 3 == 0 %}
+            </div><div class="row mb-30">
+        {% endif %}
+
+        {% if loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

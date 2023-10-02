@@ -1,0 +1,307 @@
+{
+  "name": "pimcore/skeleton",
+  "type": "project",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Björn Hempel",
+      "email": "bjoern@hempel.li"
+    }
+  ],
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "process-timeout": 0,
+    "allow-plugins": {
+      "symfony/runtime": true
+    }
+  },
+  "prefer-stable": true,
+  "require": {
+    "ixnode/php-container": "^0.1",
+    "ixnode/php-dsn-parser": "^0.1",
+    "ixnode/php-json-schema-validator": "^0.1.4",
+    "ixnode/php-naming-conventions": "^0.1",
+    "league/commonmark": "^2.4",
+    "pimcore/admin-ui-classic-bundle": "^1.1",
+    "pimcore/perspective-editor": "^1.6",
+    "pimcore/pimcore": "^11.0.4",
+    "presta/sitemap-bundle": "^3.3",
+    "symfony/dotenv": "^6.2",
+    "symfony/form": "^6.3",
+    "symfony/runtime": "^6.2",
+    "symfony/webpack-encore-bundle": "^1.17",
+    "twig/extra-bundle": "^3.7",
+    "twig/markdown-extra": "^3.7"
+  },
+  "require-dev": {
+    "ixnode/bash-db-dumper": "^0.1",
+    "ixnode/bash-version-manager": "^0.1",
+    "codeception/codeception": "^5.0.3",
+    "codeception/module-symfony": "^3.1.0",
+    "friendsofphp/php-cs-fixer": "^3.26",
+    "jetbrains/phpstorm-attributes": "^1.0",
+    "phpmd/phpmd": "^2.13",
+    "phpstan/phpstan": "^1.10",
+    "povils/phpmnd": "^3.2",
+    "rector/rector": "^0.18.3",
+    "symfony/phpunit-bridge": "^6.3"
+  },
+  "suggest": {
+    "pimcore/data-hub": "Universal data interface for GraphQL, CSV and other formats"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/",
+      "Pimcore\\Model\\DataObject\\": "var/classes/DataObject"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-create-project-cmd": "Pimcore\\Composer::postCreateProject",
+    "post-install-cmd": [
+      "Pimcore\\Composer::postInstall",
+      "@pimcore-scripts"
+    ],
+    "post-update-cmd": [
+      "Pimcore\\Composer::postUpdate",
+      "@pimcore-scripts"
+    ],
+    "pimcore-scripts": [
+      "Pimcore\\Composer::clearCache",
+      "Pimcore\\Composer::installAssets"
+    ],
+
+    "ixno:header": "bin/header/ixno",
+
+    "cache:clear": "bin/header/cache 'bin/console cache:clear' 'Clear Cache'",
+    "cache:delete": "bin/header/cache 'rm -rf var/cache/*' 'Delete Cache'",
+
+    "docker-composer:up": "docker compose up -d",
+    "docker-composer:composer-install": "docker compose exec php composer install",
+    "docker-composer:pimcore-classes-rebuild": "docker compose exec php bin/console pimcore:deployment:classes-rebuild",
+    "docker-composer:presta-sitemaps-dump": "docker compose exec php bin/console presta:sitemaps:dump",
+
+    "maildev:change-permissions": "bin/fix-maildev-permissions",
+
+    "db:dump:main:sql": "bin/header/dbdump 'vendor/bin/db-dumper dump' 'Main-DB Dumping (MySQL)'",
+    "db:restore:main:sql": "bin/header/dbinit 'vendor/bin/db-dumper import' 'Main-DB Initialization'",
+
+    "version:main:patch": "vendor/bin/version-manager --patch",
+    "version:main:show": "vendor/bin/console version:show",
+
+    "phpmnd:src": "bin/header/phpmnd 'vendor/bin/phpmnd run src --progress --hint --include-numeric-string --ignore-funcs=round,sleep' 'src'",
+    "phpmnd:tests": "bin/header/phpmnd 'vendor/bin/phpmnd run tests --progress --hint --include-numeric-string --ignore-funcs=round,sleep' 'tests'",
+    "phpmnd:all": "bin/header/phpmnd 'vendor/bin/phpmnd run src tests --progress --hint --include-numeric-string --ignore-funcs=round,sleep' 'all'",
+    "phpmnd": [
+      "@phpmnd:all"
+    ],
+
+    "codecept:unit": "bin/header/codecept 'vendor/bin/codecept run tests/Unit --fail-fast' 'Unit'",
+    "codecept:functional": "bin/header/codecept 'vendor/bin/codecept run tests/Functional --fail-fast' 'Functional'",
+
+    "codecept:all": [
+      "@codecept:unit",
+      "@codecept:functional"
+    ],
+    "codecept": [
+      "@codecept:all"
+    ],
+
+    "phpstan:run:soft": "bin/header/phpstan 'vendor/bin/phpstan analyse -c phpstan.neon --level 5 --memory-limit 512M src tests' 'run'",
+    "phpstan:run": "bin/header/phpstan 'vendor/bin/phpstan analyse -c phpstan.neon --level max --memory-limit 512M src tests' 'run'",
+    "phpstan": [
+      "@phpstan:run"
+    ],
+
+    "phpcs:check:src": "bin/header/phpcs 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --dry-run --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose fix src 2>/dev/null' 'src'",
+    "phpcs:check:tests": "bin/header/phpcs 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --dry-run --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose fix tests 2>/dev/null' 'tests'",
+    "phpcs:check:all": "bin/header/phpcs 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --dry-run --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose fix src 2>/dev/null && PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --dry-run --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose fix tests 2>/dev/null' 'all'",
+    "phpcs": [
+      "@phpcs:check:all"
+    ],
+    "phpcs:fix:src": "bin/header/phpcs 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose -v fix src 2>/dev/null' 'src'",
+    "phpcs:fix:tests": "bin/header/phpcs 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose -v fix tests 2>/dev/null' 'tests'",
+    "phpcs:fix:all": "bin/header/phpcs 'PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose -v fix src 2>/dev/null && PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer --using-cache=no --rules=@PSR12 --rules=no_unused_imports --verbose -v fix tests 2>/dev/null' 'all'",
+
+    "rector:check:clear": "bin/header/rector 'vendor/bin/rector process --dry-run --clear-cache --memory-limit=768M' 'check, force'",
+    "rector:fix:clear": "bin/header/rector 'vendor/bin/rector process --clear-cache --memory-limit=768M' 'fix, force'",
+    "rector:check": "bin/header/rector 'vendor/bin/rector process --dry-run --memory-limit=768M' 'check'",
+    "rector:fix": "bin/header/rector 'vendor/bin/rector process --memory-limit=768M' 'fix'",
+    "rector": [
+      "@rector:check"
+    ],
+    "rector:clear": [
+      "@rector:check:clear"
+    ],
+
+    "phpmd:cleancode": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/cleancode.xml' 'cleancode, all'",
+    "phpmd:codesize": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/codesize.xml' 'codesize, all'",
+    "phpmd:controversial": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/controversial.xml' 'controversial, all'",
+    "phpmd:design": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/design.xml' 'design, all'",
+    "phpmd:naming": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/naming.xml' 'naming, all'",
+    "phpmd:unusedcode": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/unusedcode.xml' 'unusedcode, all'",
+    "phpmd:all": "bin/header/phpmd 'vendor/bin/phpmd src,tests text .phpmd/all.xml' 'all, all'",
+    "phpmd:cleancode-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/cleancode.xml' 'cleancode, src'",
+    "phpmd:codesize-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/codesize.xml' 'codesize, src'",
+    "phpmd:controversial-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/controversial.xml' 'controversial, src'",
+    "phpmd:design-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/design.xml' 'design, src'",
+    "phpmd:naming-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/naming.xml' 'naming, src'",
+    "phpmd:unusedcode-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/unusedcode.xml' 'unusedcode, src'",
+    "phpmd:all-src": "bin/header/phpmd 'vendor/bin/phpmd src text .phpmd/all.xml' 'all, src'",
+    "phpmd:cleancode-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/cleancode.xml' 'cleancode, tests'",
+    "phpmd:codesize-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/codesize.xml' 'codesize, tests'",
+    "phpmd:controversial-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/controversial.xml' 'controversial, tests'",
+    "phpmd:design-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/design.xml' 'design, tests'",
+    "phpmd:naming-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/naming.xml' 'naming, tests'",
+    "phpmd:unusedcode-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/unusedcode.xml' 'unusedcode, tests'",
+    "phpmd:all-tests": "bin/header/phpmd 'vendor/bin/phpmd tests text .phpmd/all.xml' 'all, tests'",
+    "phpmd": [
+      "@phpmd:all"
+    ],
+
+    ".test:basic": [
+      "@ixno:header",
+      "@phpstan",
+      "@codecept"
+    ],
+    "test:basic": [
+      "composer .test:basic && bin/header/success || bin/header/error"
+    ],
+    ".test:most": [
+      "@ixno:header",
+      "@phpmnd",
+      "@phpstan",
+      "@codecept",
+      "@phpcs"
+    ],
+    "test:most": [
+      "composer .test:most && bin/header/success || bin/header/error"
+    ],
+    ".test:all": [
+      "@ixno:header",
+      "@phpmnd",
+      "@phpstan",
+      "@codecept",
+      "@phpcs",
+      "@phpmd"
+    ],
+    "test:all": [
+      "composer .test:all && bin/header/success || bin/header/error"
+    ],
+    ".test:hardcore": [
+      "@ixno:header",
+      "@phpmnd",
+      "@phpstan",
+      "@codecept",
+      "@phpcs",
+      "@phpmd",
+      "@rector:clear"
+    ],
+    "test:hardcore": [
+      "composer .test:hardcore && bin/header/success || bin/header/error"
+    ],
+    ".test:static": [
+      "@ixno:header",
+      "@phpmnd",
+      "@phpstan",
+      "@phpcs",
+      "@phpmd"
+    ],
+    "test:static": [
+      "composer .test:static && bin/header/success || bin/header/error"
+    ],
+    "test": [
+      "@test:all"
+    ],
+
+    "quick": [
+      "@phpstan",
+      "@phpcs"
+    ]
+  },
+  "scripts-descriptions": {
+    ".test:all": " ",
+    ".test:basic": " ",
+    ".test:hardcore": " ",
+    ".test:most": " ",
+
+    "docker-composer:up": "Alias of docker compose up -d.",
+    "docker-composer:composer-install": "Alias for composer install, but within the php docker container.",
+    "docker-composer:pimcore-classes-rebuild": "Reuilds the Pimcore classes within the php docker container.",
+    "docker-composer:presta-sitemaps-dump": "Creates the sitemap.xml files within the php docker container. The files will be located at public/*.",
+
+    "maildev:change-permissions": "Fix the maildev permissions to be able to receive emails.",
+
+    "cache:clear": "Clears the cache via symfony console (soft mode)",
+    "cache:delete": "Clears the cache via rm command (hard mode)",
+
+    "db:dump:main:sql": "Dumps all single tables from the main database to folder (MySQL)",
+    "db:restore:main:sql": "Restores the main db via sql dumps (MySQL).",
+
+    "version:main:patch": "Increases the main patch version.",
+    "version:main:show": "Shows the current versions.",
+
+    "ixno:header": "Prints the ixnode header.",
+
+    "phpcs": "Runs PHP Coding Standards Fixer (Dry-Run, all folders).",
+    "phpcs:check:all": "Runs PHP Coding Standards Fixer (Dry-Run, all folders).",
+    "phpcs:check:src": "Runs PHP Coding Standards Fixer (Dry-Run, src folder).",
+    "phpcs:check:tests": "Runs PHP Coding Standards Fixer (Dry-Run, tests folder).",
+    "phpcs:fix:all": "Runs PHP Coding Standards Fixer (Fix, all folders).",
+    "phpcs:fix:src": "Runs PHP Coding Standards Fixer (Fix, src folder).",
+    "phpcs:fix:tests": "Runs PHP Coding Standards Fixer (Fix, tests folder).",
+
+    "phpmd": "Runs PHP Mess Detector and checks all types (all folders).",
+    "phpmd:all": "Runs PHP Mess Detector and checks all types (all folders).",
+    "phpmd:all-src": "Runs PHP Mess Detector and checks all types (src folder).",
+    "phpmd:all-tests": "Runs PHP Mess Detector and checks all types (tests folder).",
+    "phpmd:cleancode": "Runs PHP Mess Detector and checks for cleancode (all folders).",
+    "phpmd:codesize": "Runs PHP Mess Detector and checks for codesize (all folders).",
+    "phpmd:controversial": "Runs PHP Mess Detector and checks for controversial (all folders).",
+    "phpmd:design": "Runs PHP Mess Detector and checks for design (all folders).",
+    "phpmd:naming": "Runs PHP Mess Detector and checks for naming (all folders).",
+    "phpmd:unusedcode": "Runs PHP Mess Detector and checks for unusedcode (all folders).",
+    "phpmd:cleancode-src": "Runs PHP Mess Detector and checks for cleancode (src folder).",
+    "phpmd:codesize-src": "Runs PHP Mess Detector and checks for codesize (src folder).",
+    "phpmd:controversial-src": "Runs PHP Mess Detector and checks for controversial (src folder).",
+    "phpmd:design-src": "Runs PHP Mess Detector and checks for design (src folder).",
+    "phpmd:naming-src": "Runs PHP Mess Detector and checks for naming (src folder).",
+    "phpmd:unusedcode-src": "Runs PHP Mess Detector and checks for unusedcode (src folder).",
+    "phpmd:cleancode-tests": "Runs PHP Mess Detector and checks for cleancode (tests folder).",
+    "phpmd:codesize-tests": "Runs PHP Mess Detector and checks for codesize (tests folder).",
+    "phpmd:controversial-tests": "Runs PHP Mess Detector and checks for controversial (tests folder).",
+    "phpmd:design-tests": "Runs PHP Mess Detector and checks for design (tests folder).",
+    "phpmd:naming-tests": "Runs PHP Mess Detector and checks for naming (tests folder).",
+    "phpmd:unusedcode-tests": "Runs PHP Mess Detector and checks for unusedcode (tests folder).",
+
+    "phpmnd": "Runs PHP Magic Number Detector and detects magic numbers.",
+    "phpmnd:all": "Runs PHP Magic Number Detector and detects magic numbers (all folders).",
+    "phpmnd:src": "Runs PHP Magic Number Detector and detects magic numbers (src folder).",
+    "phpmnd:tests": "Runs PHP Magic Number Detector and detects magic numbers (tests folder).",
+
+    "phpstan": "Runs PHPStan (PHP Static Analysis Tool).",
+    "phpstan:run": "Runs PHPStan (PHP Static Analysis Tool, Level max).",
+    "phpstan:run:soft": "Runs PHPStan (PHP Static Analysis Tool, Level 5).",
+
+    "rector": "Runs PHP Rector (Dry-Run).",
+    "rector:check": "Runs PHP Rector (Dry-Run).",
+    "rector:check:clear": "Runs PHP Rector (Dry-Run, Clear).",
+    "rector:clear": "Runs PHP Rector (Dry-Run, Clear).",
+    "rector:fix": "Runs PHP Rector (Fix).",
+    "rector:fix:clear": "Runs PHP Rector (Fix, Force).",
+
+    "test": "Runs all available tests (phpmnd, codeception, phpstan, phpcs, rector).",
+    "test:all": "Runs all available tests (phpmnd, codeception, phpstan, phpcs, phpmd).",
+    "test:hardcore": "Runs the ultimate available tests (phpmnd, codeception, phpstan, phpcs, rector, phpmd).",
+    "test:static": "Runs only static analysis tests (phpmnd, phpstan, phpcs, phpmd).",
+    "test:most": "Runs most tests (phpmnd, codeception, phpstan, phpcs).",
+    "test:basic": "Runs basic tests (codeception, phpstan).",
+
+    "quick": "Does a quick check (PHPStan and PHP Coding Standards Fixer)"
+  }
+}

@@ -1,0 +1,42 @@
+<div class="block-timeline mb-20 cur">
+    <div class="timeline-date">
+        {% if section.employment_period.endDate|date("m.Y", "Europe/Berlin") == "12.2099" %}
+            <span>{{ 'since'|trans }} {{ section.employment_period.startDate|date(locale == 'de' ? 'm.Y' : 'Y-m', "Europe/Berlin") }}</span>
+        {% else %}
+            <span>{{ section.employment_period.startDate|date(locale == 'de' ? 'm.Y' : 'Y-m', "Europe/Berlin") }} - {{ section.employment_period.endDate|date(locale == 'de' ? 'm.Y' : 'Y-m', "Europe/Berlin") }}</span>
+        {% endif %}
+    </div>
+    <div class="timeline-desc">
+        <h4 class="mb-10">
+            {{ section.job_title }}<br>
+            {% for company in section.company.items %}
+                <span>
+                {% if company.company_url is not empty %}
+                    <a href="{{ company.company_url }}" target="_blank">{{ company.company_name }}</a>
+                {% else %}
+                    {{ company.company_name }}
+                {% endif %}
+                </span>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </h4>
+
+        {% if section.job_topic is not empty %}
+            <p class="mb-10"><strong>{{ 'topic'|trans }}</strong>: <q>{{ section.job_topic }}</q></p>
+        {% endif %}
+
+        {% if section.job_description is not empty %}
+            <p class="mb-10">{{ section.job_description }}</p>
+        {% endif %}
+
+        {% if section.technologies_used is not empty %}
+            <p class="mb-10"><strong>{{ 'technologies-used'|trans }}</strong>: {{ section.technologies_used }}</p>
+        {% endif %}
+
+        {% if section.work_download is not empty %}
+            <p><strong>{{ 'download'|trans }}</strong>: <a href="{{ section.work_download.href }}" target="_blank">{{ section.work_download.text }}</a></p>
+        {% endif %}
+
+        <p class="mb-10"></p>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,26 @@
+<!-- WORK START -->
+<section id="work" class="work pt-100 pb-100 bg-grey text-center">
+    <div class="container section-content pt-100 pb-70 grey">
+        <div class="block-main-title"><span class="uppercase">{{ 'work'|trans }}.</span></div>
+        <div class="row">
+            <div class="col-md-9 col-md-push-2 offset-content works">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul id="category" class="filter mb-80">
+                            <li><a data-filter="all" href="#" class="active">{{ 'all'|trans }}</a></li>
+                            {% for workCategory in workCategories %}
+                                <li><a data-filter="{{ workCategory.name }}" href="#">{{ workCategory.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% include '_partials/work_cards.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- WORK END -->

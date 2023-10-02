@@ -1,0 +1,66 @@
+<!-- SKILLS START -->
+<section class="skills pt-100 pb-100 ">
+    <div class="container section-content pt-100 pb-20 white">
+        <div class="block-main-title"><span class="uppercase">{{ 'skills'|trans }}.</span></div>
+        <div class="row">
+            <div class="col-md-9 col-md-push-2 offset-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-title mb-80"><h4>{{ 'professional-skills'|trans }}</h4></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="block-content mb-80">
+                            <div class="block-skills">
+                                <ul class="skills-list">
+                                    {% for skillProfessional in skillProfessionals %}
+                                        <li title="{{ skillProfessional.description }}">
+                                            <div class="progress {{ skillProfessional.skillType }}"><h4 class="{{ skillProfessional.rows }}{{ skillProfessional.outer ? ' outer' : '' }}">{{ skillProfessional.name|raw }}</h4>
+                                                <div class="percentage"><span>{{ skillProfessional.scope }}%</span></div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-title mb-80"><h4>{{ 'language-skills'|trans }}</h4></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="block-content mb-80">
+                            <div class="block-language">
+                                <ul class="language-list">
+                                    {% for skillLanguage in skillLanguages %}
+                                        <li>
+                                            <span class="p{{ skillLanguage.scope }}">{{ skillLanguage.scope }}%</span>
+                                            <h4 class="mt-70">{{ skillLanguage.language_select|trans }}<br>{{ skillLanguage.description }}</h4>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-title mb-80"><h4>{{ 'personal-skills'|trans }}</h4></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="block-content mb-80">
+                            <div class="block-personal">
+                                <ul class="personal-list">
+                                    {% for skillPersonal in skillPersonals %}
+                                        <li>{{ skillPersonal.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SKILLS END -->

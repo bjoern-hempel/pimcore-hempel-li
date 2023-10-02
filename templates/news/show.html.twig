@@ -1,0 +1,117 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block seo %}
+    {% apply spaceless -%}
+        {% if news_item.seo_title is defined and news_item.seo_title is not null %}
+            {% do pimcore_head_title().set(news_item.seo_title) %}
+            {% do pimcore_head_meta().setProperty('og:title', news_item.seo_title) %}
+            {% do pimcore_head_meta().setProperty('twitter:title', news_item.seo_title) %}
+        {% endif %}
+
+        {% if news_item.seo_description is defined and news_item.seo_description is not null %}
+            {% do pimcore_head_meta().setDescription(news_item.seo_description) %}
+            {% do pimcore_head_meta().setProperty('og:description', news_item.seo_description) %}
+        {% endif %}
+
+        {% if news_item.seo_image is defined and news_item.seo_image is not null %}
+            {% do pimcore_head_meta().setProperty('og:image', app.request.getSchemeAndHttpHost() ~ news_item.seo_image.thumbnail('newsOgImage').path) %}
+            {% do pimcore_head_meta().setProperty('twitter:image', app.request.getSchemeAndHttpHost() ~ news_item.seo_image.thumbnail('newsOgImage').path) %}
+        {% endif %}
+
+        {% do pimcore_head_meta().setProperty('og:type', 'article') %}
+
+        {% if news_item.og_url is defined and news_item.og_url is not null %}
+            {% do pimcore_head_meta().setProperty('og:url', news_item.og_url) %}
+        {% endif %}
+
+        {% if news_item.og_locale is defined and news_item.og_locale is not null %}
+            {% do pimcore_head_meta().setProperty('og:locale', news_item.og_locale) %}
+        {% endif %}
+
+        {% if news_item.canonical_url is defined and news_item.canonical_url is not null %}
+            <link rel="canonical" href="{{ news_item.canonical_url }}" />
+        {% endif %}
+    {%- endapply %}
+{% endblock %}
+
+{% block page_css %}{% endblock %}
+
+{% block content_mid %}
+    {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
+
+    <section id="news" class="work pt-100 pb-100 news-detail">
+        <div class="container section-content pt-100 pb-50 grey">
+            <div class="block-main-title"><span class="uppercase">{{ 'news'|trans }}.</span></div>
+            <div class="row">
+                <div class="col-md-9 col-md-push-2 offset-content">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <!-- NEWS SINGLE START -->
+                            <article class="news-post">
+                                <h1 class="news-post-title mb-10">{{ news_item.title is defined ? news_item.title : '' }}</h1>
+
+                                <p class="news-post-meta">
+                                    {{ 'published-at-by'|trans({
+                                        '%published-at%': news_item.posted is defined ? news_item.posted : '',
+                                        '%published-by%': news_item.postedBy is defined ? news_item.postedBy : ''
+                                    }) }}
+                                </p>
+
+                                {% if news_item.tags is defined and (news_item.tags|length > 0) %}
+                                    <p class="mb-5">
+                                        {% for tag in news_item.tags %}
+                                            <a href="{{ pimcore_url({query: tag.name}, 'news') }}">
+                                                <span class="badge bg-secondary tag">{{ tag.name is defined ? tag.name : '' }}</span>
+                                            </a>{% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+
+                                <p class="mt-10 mb-10">{{ news_item.short_description is defined ? news_item.short_description : '' }}</p>
+
+                                {{ (news_item.image is defined ? news_item.image.thumbnail('newsThumbnail').html : '')|raw }}
+
+                                {% if news_item.content_markdown is defined %}
+                                    <div class="mt-5">
+                                        {{ news_item.content_markdown|markdown_to_html }}
+                                    </div>
+                                {% endif %}
+                            </article>
+                            <!-- NEWS SINGLE END -->
+                        </div>
+                        <div class="col-md-3">
+                            {% if news_item.about is defined and news_item.about is not null %}
+                                <div class="p-4 mb-3 bg-light rounded">
+                                    <h2 class="fst-italic mb-10">{{ 'about'|trans }}</h2>
+                                    <p class="mb-0" style="text-align: justify;">{{ news_item.about }}</p>
+                                </div>
+                            {% endif %}
+
+                            {% if news_item.ad is defined and news_item.ad is not null %}
+                                <div class="mb-3 bg-light rounded">
+                                    {{ news_item.ad|raw }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- NEWS CARDS START -->
+                    {% if news_item.related_news is defined and news_item.related_news|length > 0 %}
+                        <div class="row mt-40">
+                            <div class="col-md-12">
+                                <h2 class="mb-10">Related content</h2>
+
+                                <!-- NEWS CARDS START -->
+                                {% include '_partials/news_cards.html.twig' with { news: news_item.related_news } %}
+                                <!-- NEWS CARDS END -->
+                            </div>
+                        </div>
+                    {% endif %}
+                    <!-- NEWS CARDS END -->
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_js %}{% endblock %}

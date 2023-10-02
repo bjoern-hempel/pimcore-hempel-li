@@ -1,0 +1,166 @@
+# ===========================================
+# Overwrites the docker-compose.yml file (Dev mode with traefik configuration).
+#
+# @author Björn Hempel <bjoern@hempel.li>
+# @version 1.0 (2023-09-25)
+# ===========================================
+
+# ===========================================
+# Start app:
+# ----------
+# ❯ docker-compose up -d
+#
+# Show containers:
+# ----------------
+# ❯ docker container ls
+#
+# Build images:
+# -------------
+# ❯ docker-compose build
+#
+# Show logs:
+# ----------------
+# ❯ docker-compose logs -f
+#
+# Login into containers:
+# ----------------------
+# ❯ docker-compose exec nginx bash
+# ❯ docker-compose exec php bash
+#
+# Open app (local - localhost):
+# -----------------
+#
+# With Traefik proxy:
+# - https://www.hempel.localhost/
+#
+# Restart containers:
+# -------------------
+# ❯ docker-compose restart
+#
+# Shutdown containers:
+# --------------------
+# ❯ docker-compose down
+#
+# ===========================================
+
+version: "3.8"
+
+# Configures the services
+services:
+
+    # Redis
+    redis:
+        networks:
+            - network-internal
+
+    # MariaDB 10.11
+    db:
+        networks:
+            - network-internal
+
+    # Adminer service: https://adminer.hempel.localhost/
+    adminer:
+        networks:
+            - network-internal
+            - network-traefik
+        labels:
+            # enable traefik
+            - "traefik.enable=true"
+            # middleware
+            - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https.redirectscheme.scheme=https"
+            - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_frame.headers.customFrameOptionsValue=sameorigin"
+            # services (load balancer)
+            - "traefik.http.services.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_http_lb.loadbalancer.server.port=${PORT_HTTP_ADMINER_INTERNAL}"
+            - "traefik.http.services.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_http_lb.loadbalancer.server.scheme=http"
+            # http layer -> redirect https
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_http.entrypoints=web"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_http.rule=Host(`adminer.${URL_LOCAL}`)"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_http.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https"
+            # https layer
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https.entrypoints=websecure"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https.rule=Host(`adminer.${URL_LOCAL}`)"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_frame"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https.service=${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_http_lb"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_adminer_https.tls=true"
+            # network
+            - "traefik.docker.network=${NETWORK_NAME_TRAEFIK_PUBLIC_LOCAL}"
+
+    # Nginx service: https://www.hempel.localhost/
+    nginx:
+        image: nginx:stable-alpine
+        volumes:
+            - .:/var/www/html:ro
+            - ./.docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+        depends_on:
+            - php
+        networks:
+            - network-internal
+            - network-traefik
+        labels:
+            # enable traefik
+            - "traefik.enable=true"
+            # middleware
+            - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.redirectscheme.scheme=https"
+            - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.customFrameOptionsValue=sameorigin"
+            # services (load balancer - https)
+            - "traefik.http.services.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https_lb.loadbalancer.server.port=${PORT_HTTP}"
+            - "traefik.http.services.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https_lb.loadbalancer.server.scheme=http"
+            # http layer -> redirect https
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.entrypoints=web"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.rule=Host(`www.${URL_LOCAL}`)"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.service=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https_lb"
+            # https layer
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.entrypoints=websecure"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.rule=Host(`www.${URL_LOCAL}`)"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.service=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https_lb"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.tls=true"
+            # network
+            - "traefik.docker.network=${NETWORK_NAME_TRAEFIK_PUBLIC_LOCAL}"
+
+    # Maildev (amd64 and arm64 version)
+    maildev:
+        networks:
+            - network-internal
+            - network-traefik
+        labels:
+            # enable traefik
+            - "traefik.enable=true"
+            # middleware
+            - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https.redirectscheme.scheme=https"
+            - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_frame.headers.customFrameOptionsValue=sameorigin"
+            # services (load balancer)
+            - "traefik.http.services.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_http_lb.loadbalancer.server.port=${PORT_HTTP_MAILDEV_INTERNAL}"
+            - "traefik.http.services.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_http_lb.loadbalancer.server.scheme=http"
+            # http layer -> redirect https
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_http.entrypoints=web"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_http.rule=Host(`maildev.${URL_LOCAL}`)"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_http.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https"
+            # https layer
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https.entrypoints=websecure"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https.rule=Host(`maildev.${URL_LOCAL}`)"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_frame"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https.service=${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_http_lb"
+            - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_maildev_https.tls=true"
+            # network
+            - "traefik.docker.network=${NETWORK_NAME_TRAEFIK_PUBLIC_LOCAL}"
+
+    # PHP 8.2 container
+    php:
+        networks:
+            - network-internal
+
+    # Supervisord container
+    supervisord:
+        networks:
+            - network-internal
+
+# configure networks
+networks:
+    network-traefik:
+        external: true
+        name: "${NETWORK_NAME_TRAEFIK_PUBLIC_LOCAL}"
+    network-internal:
+        external: false
+        name: "${NAMESPACE_HOSTNAME}.network.internal"

@@ -1,0 +1,11 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block page_css %}{% endblock %}
+
+{% block content_mid %}
+{{ pimcore_areablock('content', {
+    allowed: ['hero', 'about', 'curriculum-vitae', 'skills', 'work', 'contact']
+}) }}
+{% endblock %}
+
+{% block page_js %}{% endblock %}

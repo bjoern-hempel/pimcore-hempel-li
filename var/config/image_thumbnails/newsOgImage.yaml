@@ -1,0 +1,28 @@
+pimcore:
+    assets:
+        image:
+            thumbnails:
+                definitions:
+                    newsOgImage:
+                        items:
+                            -
+                                method: cover
+                                arguments:
+                                    width: 1200
+                                    height: 630
+                                    positioning: center
+                                    forceResize: true
+                        medias: {  }
+                        name: newsOgImage
+                        description: ''
+                        group: ''
+                        format: SOURCE
+                        quality: 85
+                        highResolution: null
+                        preserveColor: false
+                        preserveMetaData: false
+                        rasterizeSVG: false
+                        downloadable: false
+                        modificationDate: 1695249558
+                        creationDate: 1695249507
+                        preserveAnimation: false

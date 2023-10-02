@@ -1,0 +1,44 @@
+<!-- CURRICULUM VITAE START -->
+<section class="resume pt-100 pb-100 bg-grey">
+    <div class="container section-content pt-100 pb-20 grey">
+        <div class="block-main-title"><span class="uppercase">{{ 'curriculum-vitae'|trans }}.</span></div>
+        <div class="row">
+            <div class="col-md-9 col-md-push-2 offset-content">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div class="block-title mb-80"><h4>{{ 'my-employment'|trans }}</h4></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="block-content mb-50">
+                            <div class="timeline experience">
+                                <div class="timeline-content pt-100">
+                                    {% for employment in employments %}
+                                        {% include '_partials/curriculum-vitae-section.html.twig' with { section: employment } %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-12">
+                        <div class="block-title mb-80"><h4>{{ 'my-education'|trans }}</h4></div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="block-content mb-80">
+                            <div class="timeline education ">
+                                <div class="timeline-content pt-100">
+                                    {% for education in educations %}
+                                        {% include '_partials/curriculum-vitae-section.html.twig' with { section: education } %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--div class="row"><div class="col-md-12"><div class="block-content"><div class="block-button"><ul><li><a class="but opc-1" href="portfolio.html">Download my cv <span class="arrow left"><i class="icon-angle-right"></i></span></a></li><li><a class="but opc-2" href="portfolio.html">Hire me <span class="arrow left"><i class="icon-angle-right"></i></span></a></li></ul></div></div></div></div-->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CURRICULUM VITAE END -->

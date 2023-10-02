@@ -1,0 +1,83 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block page_css %}{% endblock %}
+
+{% block content_mid %}
+    {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
+
+    <section id="contact" class="contact pt-100 pb-100 ">
+        <div class="container section-content pt-100 pb-100 white">
+            <div class="block-main-title"><span class="uppercase">{{ 'contact'|trans }}.</span></div>
+            <div class="row">
+                <div class="col-md-9 col-md-push-2 offset-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="block-title mb-80">
+                                <h4>{{ 'send-me-an-email'|trans }}</h4>
+                            </div>
+                        </div>
+
+                        {% for message in app.flashes('success') %}
+                            <div class="col-md-12">
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% for message in app.flashes('error') %}
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="col-md-12">
+                            <div class="block-content">
+                                <div class="block-contact">
+                                    {{ form_start(form, {'attr': {'class': 'contact-form', 'novalidate': true}}) }}
+
+                                        <div class="mb-20">
+                                            <div class="input-columns clearfix">
+                                                <div class="column-1">
+                                                    <div class="column-inner">
+                                                        {{ form_widget(form.name) }}
+                                                        <div class="field-error">{{ form_errors(form.name) }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="column-2">
+                                                    <div class="column-inner">
+                                                        {{ form_widget(form.email) }}
+                                                        <div class="field-error">{{ form_errors(form.email) }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-20">
+                                            {{ form_widget(form.subject) }}
+                                            <div class="field-error">{{ form_errors(form.subject) }}</div>
+                                        </div>
+
+                                        <div class="mb-20">
+                                            {{ form_widget(form.message) }}
+                                            <div class="field-error">{{ form_errors(form.message) }}</div>
+                                        </div>
+
+                                        <div class="">
+                                            <input value="{{ 'send-your-email'|trans }}" class="but brd-o submit-button" type="submit">
+                                            {{ form_rest(form) }}
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_js %}{% endblock %}

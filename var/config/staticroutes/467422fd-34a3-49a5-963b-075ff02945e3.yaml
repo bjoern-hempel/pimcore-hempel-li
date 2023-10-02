@@ -1,0 +1,14 @@
+pimcore_static_routes:
+    definitions:
+        467422fd-34a3-49a5-963b-075ff02945e3:
+            name: news
+            pattern: /news
+            reverse: /news
+            controller: null
+            variables: ''
+            defaults: ''
+            siteId: {  }
+            methods: {  }
+            priority: 0
+            creationDate: 1695244569
+            modificationDate: 1695244587

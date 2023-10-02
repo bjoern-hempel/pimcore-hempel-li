@@ -1,0 +1,44 @@
+<!-- PAGINATION START -->
+{% if paginator is defined %}
+    <div class="row mb-30 news-pagination">
+        <div class="col-md-8 col-sm-8 news-pagination-left">
+            {{ 'result-list-text'|trans({
+                '%first%': paginator.firstItemNumber,
+                '%last%': paginator.lastItemNumber,
+                '%total%': paginator.totalCount
+            }) }}
+        </div>
+        <div class="col-md-4 col-sm-4 news-pagination-right">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {% if paginator.previous is defined %}
+                        <li class="page-item">
+                            <a class="page-link prev" href="{{ pimcore_url({'page': paginator.previous}) }}" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    {% for page in paginator.pagesInRange %}
+                        {% if paginator.current == page %}
+                            <li class="page-item active">
+                            <span class="page-link">
+                                {{ page }}
+                            </span>
+                            </li>
+                        {% elseif page > 0 %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ pimcore_url({'page': page}) }}">{{ page }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if paginator.next is defined %}
+                        <li class="page-item">
+                            <a class="page-link next" href="{{ pimcore_url({'page': paginator.next}) }}" tabindex="-1" aria-disabled="true">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endif %}
+<!-- PAGINATION END -->
