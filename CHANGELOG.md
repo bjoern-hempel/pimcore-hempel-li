@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.1.1] - 2023-10-03
+
+* Search refactoring
+* Add target _blank to links from markdown
+
 ### [0.1.0] - 2023-09-25
 
 * Initial release
