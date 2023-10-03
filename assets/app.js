@@ -1,5 +1,6 @@
 /* Simple CSS import */
 import './styles/bootstrap.min.css';
+//import './styles/bootstrap-4.6.2.min.css';
 import './styles/app.css';
 import './styles/base.css';
 import './styles/main.css';

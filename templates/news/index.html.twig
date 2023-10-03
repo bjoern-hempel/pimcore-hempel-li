@@ -3,30 +3,56 @@
 {% block page_css %}{% endblock %}
 
 {% block content_mid %}
-    {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
+    {% if not editmode %}
+        {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
+    {% endif %}
 
-    <section id="news" class="works pt-100 pb-100 text-center">
-        <div class="container section-content pt-100 pb-100 grey news-search">
-            <div class="block-main-title"><span class="uppercase">{{ 'news'|trans }}.</span></div>
+    <section id="news" class="works pt-100 pb-100">
+        <div class="container section-content pt-100 pb-100 white news-search">
+            <div class="block-main-title"><span class="uppercase">{{ 'blog'|trans }}.</span></div>
             <div class="row">
                 <div class="col-md-9 col-md-push-2 offset-content">
+
+                    <div class="row mb-80">
+                        <div class="col-md-12 mb-15">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="block-title">
+                                        <h4 class="mb-15">{{ 'blog-overview'|trans }}</h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <form class="news-search-form">
+                                        <div class="input-container" style="">
+                                            <input style="" type="text" id="search" class="form-control" placeholder="Search news" name="query" value="{{ app.request.get('query', '') }}">
+                                            <button type="submit" class="btn btn-primary">{{ 'search'|trans }}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p>{{ pimcore_input('blog_description') }}</p>
+                        </div>
+                    </div>
+
                     <!-- NEWS LISTING START -->
-                    <div class="row news">
+                    <div class="row text-center">
                         <div class="col-md-12">
                             <ul id="category" class="filter mb-80">
-                                <li><a data-filter="all" href="#" class="active">All</a></li>
+                                <li><a data-filter="all" href="#" class="active">{{ 'all'|trans }}</a></li>
                                 {% for news_category in news_categories %}
                                     <li><a data-filter="{{ news_category.name }}" href="#">{{ news_category.name }}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row news">
                         <div class="col-md-12">
                             <!-- NEWS CARDS START -->
                             {% if news|length > 0 %}
                                 {% include '_partials/news_cards.html.twig' %}
-                                {% include '_partials/pagination.html.twig' %}
+                                {# include '_partials/pagination.html.twig' #}
                             {% else %}
                                 <div class="row mb-30"><b>Try another keyword?</b> No results found.</div>
                             {% endif %}
@@ -35,7 +61,7 @@
                     </div>
                     <!-- NEWS LISTING END -->
 
-                    <div class="row news-search">
+                    {#  <div class="row news-search">
                         <div class="col-md-12">
                             <form class="news-search-form">
                                 <div class="row mb-30 news-pagination">
@@ -64,9 +90,9 @@
                                         <button type="submit" class="btn btn-primary">{{ 'search'|trans }}</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                    </div>
+                    </div> #}
                 </div>
             </div>
         </div>

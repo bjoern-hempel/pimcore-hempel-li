@@ -20,6 +20,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block\BlockQuote;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Block\ListBlock;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Extension\Table\Table;
@@ -75,6 +76,9 @@ final readonly class LeagueCommonMarkConverterFactory
                     'figcaption' => [
                         'class' => 'blockquote-footer',
                     ]
+                ],
+                Link::class => [
+                    'target' => '_blank',
                 ]
             ],
         ];

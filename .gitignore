@@ -25,6 +25,8 @@
 /var/config/system.yml
 /var/config/maintenance.php
 
+/.github
+
 # project specific recommendations
 /var/config/tag-manager.php
 /var/config/reports.php

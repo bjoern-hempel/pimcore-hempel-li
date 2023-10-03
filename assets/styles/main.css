@@ -1511,11 +1511,21 @@ section.hero .top {
 .news-pagination ul.pagination .page-item .page-link {
     color: #097965;
 }
+.news-search-form .input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.news-search-form .input-container #search {
+    flex: 1;
+    padding: 10px;
+    display: inline-block;
+}
 .news-search .btn-primary {
     background-color: #097965;
     border-color: #097965;
     color: #ffffff;
-    margin-top: -2px;
+    margin-left: 10px;
 }
 .news-search select {
     border: 1px solid #ddd;

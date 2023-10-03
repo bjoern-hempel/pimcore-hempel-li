@@ -47,7 +47,7 @@ class NewsController extends FrontendController
     }
 
     /**
-     * Renders the /news page.
+     * Renders the /blog page.
      *
      * @param Request $request
      * @param PaginatorInterface $paginator
@@ -67,14 +67,14 @@ class NewsController extends FrontendController
     }
 
     /**
-     * Renders the /news/{slug} page.
+     * Renders the /blog/{slug} page.
      *
      * @param Request $request
      * @param int $newsId
      * @return Response
      * @throws Exception
      */
-    #[Route('/news/{slug}-{newsId}', name: 'news_show', requirements: ['slug' => '[\w-]+', 'newsId' => '\d+'])]
+    #[Route('/en/blog/{slug}-{newsId}', name: 'news_show', requirements: ['slug' => '[\w-]+', 'newsId' => '\d+'])]
     public function showAction(Request $request, int $newsId): Response
     {
         $news = $this->newsRepository->find($newsId);

@@ -50,7 +50,7 @@ class NewsRepository
      */
     public function paginate(Request $request, PaginatorInterface $paginator): PaginationInterface
     {
-        $perPage = $request->get('perPage', 12);
+        $perPage = $request->get('perPage', 50);
         $page = $request->get('page', 1);
 
         if (!is_string($perPage) && !is_int($perPage)) {
