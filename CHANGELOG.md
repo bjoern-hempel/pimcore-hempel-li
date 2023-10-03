@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.1.2] - 2023-10-04
+
+* Add syntax highlighting
+* Add updated at value to blog detail
+
 ### [0.1.1] - 2023-10-03
 
 * Search refactoring
