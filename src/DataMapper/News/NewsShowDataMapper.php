@@ -15,6 +15,8 @@ namespace App\DataMapper\News;
 
 use App\Constant\Timezone;
 use App\DataMapper\Base\AbstractDataMapper;
+use DateTime;
+use DateTimeZone;
 use LogicException;
 use Pimcore\Model\DataObject\News;
 use Pimcore\Model\User;
@@ -54,9 +56,22 @@ class NewsShowDataMapper extends AbstractDataMapper
 
         $date = $this->resource->getDate();
 
+        $modificationDate = $this->resource->getModificationDate();
+
+        $dateModification = null;
+
+        if (!is_null($modificationDate)) {
+            $dateModification = new DateTime();
+            $dateModification->setTimestamp($modificationDate);
+            $dateModification->setTimezone(new DateTimeZone(Timezone::EUROPE_BERLIN));
+        }
+
         if (is_null($date)) {
             throw new LogicException('Date is not set within resource.');
         }
+
+        $posted = $date->setTimezone(Timezone::EUROPE_BERLIN)->format('F j, Y');
+        $updated = is_null($dateModification) ? null : ($dateModification->format('F j, Y') !== $posted ? $dateModification->format('F j, Y') : null);
 
         return [
             'id' => $this->resource->getId(),
@@ -64,7 +79,8 @@ class NewsShowDataMapper extends AbstractDataMapper
             'title' => $this->resource->getTitle(),
             'short_description' => $this->resource->getShortDescription(),
             'content_markdown' => $this->resource->getContentMarkdown(),
-            'posted' => $date->setTimezone(Timezone::EUROPE_BERLIN)->format('F j, Y'),
+            'posted' => $posted,
+            'updated' => $updated,
             'postedBy' => $postedBy->getFirstname(),
             'about' => $this->resource->getAbout(),
             'ad' => $this->resource->getAd(),

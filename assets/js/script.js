@@ -1,7 +1,10 @@
 'use strict';
 import Granim from "granim";
+import highlight from 'highlight.js';
 
-!function ($) {
+!function ($, highlight) {
+
+    highlight.highlightAll();
 
     /**
      * @return {undefined}
@@ -83,4 +86,4 @@ import Granim from "granim";
 
         return false;
     });
-}(jQuery);
+}(jQuery, highlight);

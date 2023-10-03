@@ -54,7 +54,7 @@
                                     {{ 'published-at-by'|trans({
                                         '%published-at%': news_item.posted is defined ? news_item.posted : '',
                                         '%published-by%': news_item.postedBy is defined ? news_item.postedBy : ''
-                                    }) }}
+                                    }) }}{{ news_item.updated ? ' (updated: ' ~ news_item.updated ~ ')' : '' }}
                                 </p>
 
                                 {% if news_item.tags is defined and (news_item.tags|length > 0) %}

@@ -188,7 +188,8 @@ section.hero.auto-height .header .logo {
     content: '↓';
     position: absolute;
     top: -18px;
-    left: 33%;
+    left: 50%;
+    margin-left: -3px;
 }
 .header .short-contact li a.light:hover {
     opacity: 1;
@@ -1594,3 +1595,24 @@ blockquote p::after {
     border-bottom: 1px solid #707171;
 }
 /* Finish Pagination */
+
+
+
+.hljs-variable {
+    color: #097965;
+}
+.hljs-keyword {
+    color: #790965;
+}
+.hljs-title.class_ {
+    color: #796509;
+}
+.hljs-number, .hljs-string {
+    color: #a06509;
+}
+.hljs-comment {
+    color: #808080;
+}
+.hljs-title.function_ {
+    color: #79a009;
+}
