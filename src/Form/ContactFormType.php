@@ -47,7 +47,7 @@ class ContactFormType extends AbstractType
                     'class' => '',
                 ],
                 'attr' => [
-                    'class' => '',
+                    'class' => 'form-control',
                     'placeholder' => 'placeholder.email',
                 ],
                 'constraints' => [
@@ -63,7 +63,7 @@ class ContactFormType extends AbstractType
                     'class' => '',
                 ],
                 'attr' => [
-                    'class' => '',
+                    'class' => 'form-control',
                     'placeholder' => 'placeholder.name',
                 ],
                 'constraints' => [
@@ -76,7 +76,7 @@ class ContactFormType extends AbstractType
                     'class' => '',
                 ],
                 'attr' => [
-                    'class' => '',
+                    'class' => 'form-control',
                     'placeholder' => 'placeholder.subject',
                 ],
                 'constraints' => [
@@ -89,7 +89,8 @@ class ContactFormType extends AbstractType
                     'class' => '',
                 ],
                 'attr' => [
-                    'class' => '',
+                    'class' => 'form-control',
+                    'style' => 'height: 200px',
                     'placeholder' => 'placeholder.message',
                     'rows' => 5,
                 ],

@@ -1,10 +1,43 @@
 'use strict';
+window.hljs = require('highlight.js');
+require('highlightjs-line-numbers.js');
 import Granim from "granim";
-import highlight from 'highlight.js';
+//import highlight from 'highlight.js';
 
 !function ($, highlight) {
 
+    /* Add copy button to pre code blocks (with copy to clipboard functionality) */
+    $('pre code').each(function (i, block) {
+        let code = block.textContent;
+
+        let blockJquery = $(block);
+
+        blockJquery.parent().data('code', code);
+
+        let button = $('<button>', {title: 'Copy to clipboard'});
+
+        button.text('📋');
+        button.on('click', function (e) {
+            let preJquery = $(e.target).parent();
+
+            let copyText = preJquery.data('code');
+
+            navigator.clipboard.writeText(copyText);
+
+            alert('Copied code to clipboard');
+        });
+
+        blockJquery.parent().append(button);
+    });
+
+    /* Add code highlighting and line numbers */
     highlight.highlightAll();
+    highlight.initLineNumbersOnLoad();
+
+    /* Close alerts after 5 seconds */
+    $('.alert').fadeTo(5000, 500).slideUp(500, function(){
+        $('.alert').slideUp(500);
+    });
 
     /**
      * @return {undefined}
@@ -86,4 +119,4 @@ import highlight from 'highlight.js';
 
         return false;
     });
-}(jQuery, highlight);
+}(jQuery, window.hljs);

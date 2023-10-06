@@ -9,10 +9,10 @@
         <div class="container section-content pt-100 pb-100 white">
             <div class="block-main-title"><span class="uppercase">{{ 'contact'|trans }}.</span></div>
             <div class="row">
-                <div class="col-md-9 col-md-push-2 offset-content">
+                <div class="col-md-9 offset-md-2 offset-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="block-title mb-80">
+                            <div class="block-title mb-50">
                                 <h4>{{ 'send-me-an-email'|trans }}</h4>
                             </div>
                         </div>
@@ -41,27 +41,31 @@
                                         <div class="mb-20">
                                             <div class="input-columns clearfix">
                                                 <div class="column-1">
-                                                    <div class="column-inner">
+                                                    <div class="column-inner form-floating">
                                                         {{ form_widget(form.name) }}
+                                                        <label for="contact_form_name">Fore- and Surname</label>
                                                         <div class="field-error">{{ form_errors(form.name) }}</div>
                                                     </div>
                                                 </div>
                                                 <div class="column-2">
-                                                    <div class="column-inner">
+                                                    <div class="column-inner form-floating">
                                                         {{ form_widget(form.email) }}
+                                                        <label for="contact_form_email">Email</label>
                                                         <div class="field-error">{{ form_errors(form.email) }}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="mb-20">
+                                        <div class="mb-20 form-floating">
                                             {{ form_widget(form.subject) }}
+                                            <label for="contact_form_subject">Subject</label>
                                             <div class="field-error">{{ form_errors(form.subject) }}</div>
                                         </div>
 
-                                        <div class="mb-20">
+                                        <div class="mb-20 form-floating">
                                             {{ form_widget(form.message) }}
+                                            <label for="contact_form_message">Type a message here...</label>
                                             <div class="field-error">{{ form_errors(form.message) }}</div>
                                         </div>
 

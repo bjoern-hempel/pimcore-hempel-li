@@ -1572,11 +1572,6 @@ section.hero .top {
     font-size: 13px;
     color: #999;
 }
-.news-detail pre {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding: 10px;
-}
 .news-detail blockquote p {
     font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
     font-size: 23px;
@@ -1598,6 +1593,37 @@ blockquote p::after {
 
 
 
+.news-detail pre {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: transparent;
+    border: 1px solid #efefef;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+    position: relative;
+}
+.news-detail pre button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    display: none;
+}
+.news-detail pre:hover button {
+    display: block;
+}
 .hljs-variable {
     color: #097965;
 }
@@ -1615,4 +1641,33 @@ blockquote p::after {
 }
 .hljs-title.function_ {
     color: #79a009;
+}
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: center;
+    color: #ccc;
+    border-right: 1px solid #ccc !important;
+    vertical-align: top;
+    padding-right: 10px !important;
+
+    /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+    padding-left: 10px !important;
+}
+
+.form-floating label {
+    padding: 15px 20px;
+    line-height: 26px;
+}
+.form-floating textarea.form-control {
+    padding: 15px 20px;
 }
