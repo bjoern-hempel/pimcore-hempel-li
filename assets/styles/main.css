@@ -747,7 +747,7 @@ section.hero.auto-height .header .logo {
 }
 .box.work h4 span.title-description {
     display: block;
-    height: 90px;
+    height: 120px;
 }
 .box.work h4 span.title {
     display: block;
@@ -755,7 +755,7 @@ section.hero.auto-height .header .logo {
 }
 .box.work h4 span.description {
     display: block;
-    font-size: 11px;
+    font-size: 13px;
     color: #666666;
     margin-top: 5px;
     font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
@@ -775,6 +775,9 @@ section.hero.auto-height .header .logo {
 }
 .box.work .box-img {
     height: 140px;
+}
+.box.work .box-img img, .box.work .box-img source {
+    object-fit: cover;
 }
 .box.work .box-img img {
     height: 140px;
