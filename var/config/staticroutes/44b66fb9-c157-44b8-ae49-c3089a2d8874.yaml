@@ -2,8 +2,8 @@ pimcore_static_routes:
     definitions:
         44b66fb9-c157-44b8-ae49-c3089a2d8874:
             name: blog
-            pattern: /blog
-            reverse: /blog
+            pattern: /en/blog
+            reverse: /en/blog
             controller: null
             variables: ''
             defaults: ''
@@ -11,4 +11,4 @@ pimcore_static_routes:
             methods: {  }
             priority: 0
             creationDate: 1694459483
-            modificationDate: 1694563018
+            modificationDate: 1696697637

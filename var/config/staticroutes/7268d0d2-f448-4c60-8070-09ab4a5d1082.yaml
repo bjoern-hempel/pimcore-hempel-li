@@ -2,8 +2,8 @@ pimcore_static_routes:
     definitions:
         7268d0d2-f448-4c60-8070-09ab4a5d1082:
             name: contact
-            pattern: /contact
-            reverse: /contact
+            pattern: /en/contact
+            reverse: /en/contact
             controller: null
             variables: ''
             defaults: ''
@@ -11,4 +11,4 @@ pimcore_static_routes:
             methods: {  }
             priority: 0
             creationDate: 1694953466
-            modificationDate: 1694953478
+            modificationDate: 1696697651

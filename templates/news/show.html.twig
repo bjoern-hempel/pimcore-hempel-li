@@ -48,6 +48,7 @@
                         <div class="col-md-9">
                             <!-- NEWS SINGLE START -->
                             <article class="news-post">
+
                                 <h1 class="news-post-title mb-10">{{ news_item.title is defined ? news_item.title : '' }}</h1>
 
                                 <p class="news-post-meta">
@@ -58,18 +59,20 @@
                                 </p>
 
                                 {% if news_item.tags is defined and (news_item.tags|length > 0) %}
-                                    <p class="mb-5">
+                                    <p class="mb-10">
                                         {% for tag in news_item.tags %}
-                                            <a href="{{ pimcore_url({query: tag.name}, 'news') }}">
-                                                <span class="badge bg-secondary tag">{{ tag.name is defined ? tag.name : '' }}</span>
+                                        <a href="{{ pimcore_url({query: tag.name}, 'blog') }}">
+                                            <span class="badge bg-secondary tag">{{ tag.name is defined ? tag.name : '' }}</span>
                                             </a>{% if not loop.last %}, {% endif %}
                                         {% endfor %}
                                     </p>
                                 {% endif %}
 
-                                <p class="mt-10 mb-10">{{ news_item.short_description is defined ? news_item.short_description : '' }}</p>
+                                <p class="mt-10 mb-10 news-description"><strong>{{ 'abstract'|trans }}</strong>: {{ news_item.short_description is defined ? news_item.short_description : '' }}</p>
 
-                                {{ (news_item.image is defined ? news_item.image.thumbnail('newsThumbnail').html : '')|raw }}
+                                <p>
+                                    {{ (news_item.image is defined ? news_item.image.thumbnail('newsThumbnail').html : '')|raw }}
+                                </p>
 
                                 {% if news_item.content_markdown is defined %}
                                     <div class="mt-5">
@@ -83,7 +86,12 @@
                             {% if news_item.about is defined and news_item.about is not null %}
                                 <div class="p-4 mb-3 bg-light rounded">
                                     <h2 class="fst-italic mb-10">{{ 'about'|trans }}</h2>
-                                    <p class="mb-0" style="text-align: justify;">{{ news_item.about }}</p>
+                                    <p class="mb-0" style="text-align: justify;">{{ news_item.about|trans|raw }}</p>
+                                </div>
+                            {% else %}
+                                <div class="p-4 mb-3 bg-light rounded">
+                                    <h2 class="fst-italic mb-10">{{ 'about'|trans }}</h2>
+                                    <p class="mb-0" style="text-align: justify;">{{ ('about-text-' ~ news_item.postedByUsername)|trans|raw }}</p>
                                 </div>
                             {% endif %}
 

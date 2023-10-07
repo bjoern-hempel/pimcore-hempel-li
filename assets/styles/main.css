@@ -1058,7 +1058,7 @@ section.hero .top {
         -webkit-appearance: none;
         -webkit-border-radius: 0;
     }
-    section.hero {
+    section.hero.auto-height {
         height: 1000px;
     }
     .skills-list li {
@@ -1074,7 +1074,7 @@ section.hero .top {
     .inner-wrapper {
         margin: 0;
     }
-    section.hero {
+    section.hero.auto-height {
         height: 850px;
     }
     .hero-content .profile-img img {
@@ -1116,7 +1116,7 @@ section.hero .top {
     .inner-wrapper {
         margin: 0;
     }
-    section.hero {
+    section.hero.auto-height {
         height: 800px;
     }
     .hero-content .profile-img img {
@@ -1151,7 +1151,7 @@ section.hero .top {
     .inner-wrapper {
         margin: 0;
     }
-    section.hero {
+    section.hero.auto-height {
         height: 700px;
     }
     .hero-content .profile-img img {
@@ -1195,7 +1195,7 @@ section.hero .top {
     .inner-wrapper {
         margin: 0;
     }
-    section.hero {
+    section.hero.auto-height {
         height: 700px;
     }
     .header .short-contact {
@@ -1342,7 +1342,7 @@ section.hero .top {
     .inner-wrapper {
         margin: 0;
     }
-    section.hero {
+    section.hero.auto-height {
         height: 700px;
     }
     .header .short-contact {
@@ -1624,6 +1624,12 @@ blockquote p::after {
 .news-detail pre:hover button {
     display: block;
 }
+.news-detail article.news-post {
+    font-size: 16px;
+}
+.news-detail article.news-post .news-description {
+    font-size: 14px;
+}
 .hljs-variable {
     color: #097965;
 }
@@ -1670,4 +1676,21 @@ blockquote p::after {
 }
 .form-floating textarea.form-control {
     padding: 15px 20px;
+}
+
+.page-404 .container {
+    min-height: 380px;
+}
+
+.page-404 h1 {
+    font-size: 3rem;
+}
+.page-404 h2 {
+    font-size: 2rem;
+}
+.page-404 h3 {
+    font-size: 1.5rem;
+}
+.page-404 p {
+    font-size: 16px;
 }

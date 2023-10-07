@@ -25,11 +25,11 @@
         {% endif %}
 
         {% if section.job_description is not empty %}
-            <p class="mb-10">{{ section.job_description }}</p>
+            <p class="mb-10">{{ section.job_description|raw }}</p>
         {% endif %}
 
         {% if section.technologies_used is not empty %}
-            <p class="mb-10"><strong>{{ 'technologies-used'|trans }}</strong>: {{ section.technologies_used }}</p>
+            <p class="mb-10"><strong>{{ 'technologies-used'|trans }}</strong>: {{ section.technologies_used|raw }}</p>
         {% endif %}
 
         {% if section.work_download is not empty %}

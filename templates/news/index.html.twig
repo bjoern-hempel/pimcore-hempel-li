@@ -24,7 +24,10 @@
                                 <div class="col-md-4 text-right">
                                     <form class="news-search-form">
                                         <div class="input-container" style="">
-                                            <input style="" type="text" id="search" class="form-control" placeholder="Search news" name="query" value="{{ app.request.get('query', '') }}">
+                                            <div style="height: 40px;" class="form-floating">
+                                                <input style="height: 40px; padding: 14px 10px 0px; font-size: 14px;" type="text" id="search" name="query" required="required" class="form-control" placeholder="Search news" value="{{ app.request.get('query', '') }}">
+                                                <label style="padding: 7px 10px;" for="search">Search news</label>
+                                            </div>
                                             <button type="submit" class="btn btn-primary">{{ 'search'|trans }}</button>
                                         </div>
                                     </form>

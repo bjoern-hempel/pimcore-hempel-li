@@ -155,6 +155,10 @@ a:visited,
 a:focus {
     text-decoration: none;
 }
+a:hover {
+    color: #23527c;
+}
+
 img {
     display: inline-block;
     vertical-align: middle;
