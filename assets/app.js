@@ -1,7 +1,5 @@
 /* Simple CSS import */
-//import './styles/bootstrap.min.css';
-import './styles/bootstrap-5.2.3.min.css';
-import './styles/app.css';
+import './styles/vendor/bootstrap/bootstrap-5.2.3.min.css';
 import './styles/base.css';
 import './styles/main.css';
 import './styles/svg.css';
@@ -10,15 +8,9 @@ import './styles/fonts.css';
 /* Include jQuery and make it accessible via $ */
 const $ = require('jquery');
 
-/* Include Libraries */
-require('select2');
-
-/* Include SCSS */
-require('./styles/select2.scss');
-
 /* Include JS */
-require('./js/smooth-scroll.js');
-require('./js/granim.min.js');
+require('./js/vendor/smoothscroll/smoothscroll.js');
+require('./js/vendor/granim/granim.min.js');
 require('./js/script.js');
 require('./js/map.js');
 require('./js/svg.js');

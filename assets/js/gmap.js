@@ -1,8 +1,12 @@
-const loadGoogleMapsApi = require('load-google-maps-api');
-
 /**
  * Load Google Maps API
+ *
+ * @author Björn Hempel <bjoern@hempel.li>
+ * @version 0.1.0 (2023-10-07)
+ * @since 0.1.0 (2023-10-07) First version.
  */
+const loadGoogleMapsApi = require('load-google-maps-api');
+
 loadGoogleMapsApi({key: 'AIzaSyDYv-yqfJxpfpZbkT1qve_txGdTfrKO6Fg'}).then(function (googleMaps) {
 
     let blockMap = document.getElementById('block-map');

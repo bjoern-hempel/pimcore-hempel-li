@@ -1,3 +1,6 @@
+/**
+ * Load fonts and define icons.
+ */
 @font-face {
 	font-family: 'Montserrat-SemiBold';
 	src: url('../fonts/Montserrat-SemiBold.eot');
@@ -8,8 +11,6 @@
 	font-style: normal;
 }
 
-
-
 @font-face {
 	font-family: 'Montserrat-Regular';
 	src: url('../fonts/Montserrat-Regular.eot');
@@ -19,7 +20,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 
 @font-face {
 	font-family: 'Montserrat-Medium';
