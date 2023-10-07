@@ -1,6 +1,16 @@
 const loadGoogleMapsApi = require('load-google-maps-api');
 
+/**
+ * Load Google Maps API
+ */
 loadGoogleMapsApi({key: 'AIzaSyDYv-yqfJxpfpZbkT1qve_txGdTfrKO6Fg'}).then(function (googleMaps) {
+
+    let blockMap = document.getElementById('block-map');
+
+    /* Check if element block-map exists. */
+    if (blockMap === null) {
+        return;
+    }
 
     /** @type {!Array} */
     let styles = [
@@ -29,8 +39,8 @@ loadGoogleMapsApi({key: 'AIzaSyDYv-yqfJxpfpZbkT1qve_txGdTfrKO6Fg'}).then(functio
         }
     ];
 
-    var lat = 51.060927;
-    var lng = 13.740781;
+    let lat = 51.060927;
+    let lng = 13.740781;
 
     let styledMap = new googleMaps.StyledMapType(styles, {
         name : "Styled Map"
@@ -58,5 +68,5 @@ loadGoogleMapsApi({key: 'AIzaSyDYv-yqfJxpfpZbkT1qve_txGdTfrKO6Fg'}).then(functio
     map.mapTypes.set("map_style", styledMap);
     map.setMapTypeId("map_style");
 }).catch(function (error) {
-    console.error(error)
+    console.error('Unable to load the Google Maps API: "' + error + '"');
 });

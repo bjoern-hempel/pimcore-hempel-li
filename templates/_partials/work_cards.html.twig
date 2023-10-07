@@ -5,7 +5,14 @@
         {% endif %}
 
         <div class="col-md-4 col-sm-4">
-            <a href="{{ work.link }}">
+            {% set target = work.linkInformation is null ? '' : work.linkInformation.target %}
+            {% set text = work.linkInformation is null ? null : work.linkInformation.text %}
+            {% set link = work.linkInformation is null ? null : work.linkInformation.href %}
+
+            {% if link is not null %}
+                <a href="{{ link }}" target="{{ target }}">
+            {% endif %}
+
                 <div class="box work {% for category in work.categories %}{{ category.name is defined ? category.name : '' }} {% endfor %}">
                     <div class="box-img">{{ (work.image is defined ? work.image.thumbnail('newsThumbnail').html : '')|raw }}</div>
                     <div class="box-content">
@@ -21,7 +28,10 @@
                         </h4>
                     </div>
                 </div>
-            </a>
+
+            {% if link is not null %}
+                </a>
+            {% endif %}
         </div>
 
         {% if loop.index % 3 == 0 %}

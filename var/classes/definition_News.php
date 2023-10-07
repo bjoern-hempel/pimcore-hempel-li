@@ -31,7 +31,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1696097514,
+   'modificationDate' => 1696701143,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -179,8 +179,8 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                      'maxLength' => NULL,
                      'showCharCount' => false,
                      'excludeFromSearchIndex' => false,
-                     'height' => '',
-                     'width' => '',
+                     'height' => 800,
+                     'width' => 500,
                   )),
                   3 => 
                   \Pimcore\Model\DataObject\ClassDefinition\Data\Date::__set_state(array(

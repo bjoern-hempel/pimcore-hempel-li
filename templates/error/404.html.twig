@@ -3,7 +3,7 @@
 {% block page_css %}{% endblock %}
 
 {% block content_mid %}
-    {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
+    {% include 'areas/hero/view.html.twig' with { locale: locale|default('en'), simple_mode: true } %}
 
     <section id="404" class="work pt-100 pb-100 page-404">
         <div class="container section-content pt-100 pb-50 white">
@@ -12,26 +12,12 @@
                 <div class="col-md-9 offset-md-2 offset-content">
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="text-center mt-5"><b>404</b></h1>
-                            <h3 class="text-center mt-5">Page not found</h3>
-                            <p class="text-center mt-20">The page you are looking for doesn't exist or an error occurred.</p>
-                            <p class="text-center mt-10">Please try a different page.</p>
+                            <h1 class="text-center mt-5"><b>{{ '404'|trans }}</b></h1>
+                            <h3 class="text-center mt-5">{{ 'page-not-found'|trans }}</h3>
+                            <p class="text-center mt-20">{{ 'page-not-found-information'|trans }}</p>
+                            <p class="text-center mt-10">{{ 'try-another-page'|trans }}</p>
                         </div>
                     </div>
-
-                    <!-- NEWS CARDS START -->
-                    {% if news_item.related_news is defined and news_item.related_news|length > 0 %}
-                        <div class="row mt-40">
-                            <div class="col-md-12">
-                                <h2 class="mb-10">Related content</h2>
-
-                                <!-- NEWS CARDS START -->
-                                {% include '_partials/news_cards.html.twig' with { news: news_item.related_news } %}
-                                <!-- NEWS CARDS END -->
-                            </div>
-                        </div>
-                    {% endif %}
-                    <!-- NEWS CARDS END -->
                 </div>
             </div>
         </div>

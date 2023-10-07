@@ -94,11 +94,6 @@ import Granim from "granim";
         $(this).css('height', meterPos).parent().find('h4.outer').css('bottom', meterPos);
     });
 
-    $('a.scroll').smoothScroll({
-        speed: 800,
-        offset: 0
-    });
-
     /* Category filter */
     $('.filter').on('click', 'li a', function () {
         $(this).addClass('active');

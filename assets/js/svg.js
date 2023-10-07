@@ -4,9 +4,13 @@
 }(jQuery);
 
 function openSvg() {
-    document.querySelector('.svg').innerHTML = window.map;
-//    centerSvg();
-//    window.addEventListener('resize', centerSvg );
+    let svg = document.querySelector('.svg');
+
+    if (svg === null) {
+        return;
+    }
+
+    svg.innerHTML = window.map;
     animate();
     document.addEventListener('animationend', animate);
 }

@@ -8,7 +8,7 @@
  * - localizedfields [localizedfields]
  * -- title [input]
  * -- description [textarea]
- * -- link [input]
+ * -- linkInformation [link]
  * - order [numeric]
  * - image [hotspotimage]
  * - tags [manyToManyObjectRelation]
@@ -22,7 +22,7 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'title' => '',
    'description' => '',
    'creationDate' => NULL,
-   'modificationDate' => 1696106907,
+   'modificationDate' => 1696704461,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -170,11 +170,11 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'width' => 500,
                       )),
                       2 => 
-                      \Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
-                         'name' => 'link',
-                         'title' => 'Link',
+                      \Pimcore\Model\DataObject\ClassDefinition\Data\Link::__set_state(array(
+                         'name' => 'linkInformation',
+                         'title' => 'Link Information',
                          'tooltip' => '',
-                         'mandatory' => true,
+                         'mandatory' => false,
                          'noteditable' => false,
                          'index' => false,
                          'locked' => false,
@@ -188,16 +188,15 @@ return \Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                          'blockedVarsForExport' => 
                         array (
                         ),
-                         'defaultValue' => NULL,
-                         'columnLength' => 190,
-                         'regex' => '',
-                         'regexFlags' => 
+                         'allowedTypes' => 
                         array (
                         ),
-                         'unique' => false,
-                         'showCharCount' => false,
-                         'width' => '',
-                         'defaultValueGenerator' => '',
+                         'allowedTargets' => 
+                        array (
+                        ),
+                         'disabledFields' => 
+                        array (
+                        ),
                       )),
                     ),
                      'region' => NULL,
