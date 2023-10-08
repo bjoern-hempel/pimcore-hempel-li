@@ -1,0 +1,99 @@
+@import '../include/colors';
+@import '../include/mixins';
+
+.footer {
+    p a {
+        @include text-shadow();
+    }
+
+    .logo h2 {
+        @include text-uppercase-30();
+        @include text-shadow();
+    }
+}
+
+.inner-footer {
+    position: relative;
+    height: 305px;
+}
+
+.footer-content {
+    position: relative;
+}
+.footer .top {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+}
+section.hero .top {
+    position: relative;
+    top: 100px;
+}
+.top {
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    display: inline-block;
+}
+.top:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    -webkit-transform: translateY(-1px);
+    -moz-transform: translateY(-1px);
+    -ms-transform: translateY(-1px);
+    -o-transform: translateY(-1px);
+}
+.footer-content .logo {
+    display: inline-block;
+    position: relative;
+}
+.footer-content p {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #fafafa;
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+    .footer-content .top {
+        top: 16%;
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .footer-content .top {
+        top: 16%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .footer-content .top {
+        top: 16%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width: 479px) {
+
+}

@@ -1,0 +1,167 @@
+@import '../include/colors';
+@import '../include/mixins';
+
+.box.work h4 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.box.work h4 span.title-description {
+    display: block;
+    height: 120px;
+}
+.box.work h4 span.title {
+    display: block;
+    font-family: Montserrat-SemiBold,Helvetica,Arial,sans-serif;
+}
+.box.work h4 span.description {
+    display: block;
+    font-size: 13px;
+    color: #666666;
+    margin-top: 5px;
+    font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
+}
+.box.work h4 span.category {
+    display: block;
+    font-size: 13px;
+    color: #999999;
+    margin-top: 5px;
+    font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
+}
+.box.work h4 span.date {
+    display: block;
+    font-size: 11px;
+    color: #666666;
+    margin-top: 3px;
+}
+.box.work .box-img {
+    height: 140px;
+}
+.box.work .box-img img, .box.work .box-img source {
+    object-fit: cover;
+}
+.box.work .box-img img {
+    height: 140px;
+}
+.block-filter ul {
+    display: inline-block;
+    position: relative;
+}
+.filter li {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 20px;
+    position: relative;
+}
+.filter li a {
+    color: #333333;
+}
+.filter li a:hover {
+    color: #097965;
+}
+.filter li a.active:before,
+.filter li a.active:after {
+    height: 10px;
+}
+.filter li a.active {
+    color: #097965;
+}
+.filter li a:before {
+    background: #097965;
+    content: "";
+    height: 0px;
+    left: 50%;
+    position: absolute;
+    width: 1px;
+    top: -20px;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+.filter li a:after {
+    background: #097965;
+    content: "";
+    height: 0px;
+    left: 50%;
+    position: absolute;
+    width: 1px;
+    bottom: -20px;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+.disable:before {
+    background-color: #ffffff;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 12;
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .box.work h3 span.title {
+        height: 90px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .box {
+        margin-bottom: 30px;
+    }
+    .col-md-12 .row:last-child .col-md-4:last-child .box {
+        margin-bottom: 0 !important;
+    }
+    .works .row.mb-30 {
+        margin-bottom: 0 !important;
+    }
+    .filter li {
+        display: block;
+        margin: 40px 0;
+    }
+    .filter li:first-child {
+        margin-top: 20px;
+    }
+    .filter li:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .box {
+        margin-bottom: 30px;
+    }
+    .col-md-12 .row:last-child .col-md-4:last-child .box {
+        margin-bottom: 0 !important;
+    }
+    .works .row.mb-30 {
+        margin-bottom: 0 !important;
+    }
+    .filter li {
+        display: block;
+        margin: 40px 0;
+    }
+    .filter li:first-child {
+        margin-top: 20px;
+    }
+    .filter li:last-child {
+        margin-bottom: 0;
+    }
+}

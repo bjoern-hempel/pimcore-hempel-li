@@ -1,0 +1,62 @@
+@import '../include/colors';
+@import '../include/mixins';
+
+.form-floating label {
+    padding: 15px 20px;
+    line-height: 26px;
+}
+.form-floating textarea.form-control {
+    padding: 15px 20px;
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    input,
+    textarea {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
+    }
+}

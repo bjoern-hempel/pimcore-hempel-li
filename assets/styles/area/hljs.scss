@@ -1,0 +1,70 @@
+@import '../include/colors';
+@import '../include/mixins';
+
+.hljs-variable {
+    color: #097965;
+}
+.hljs-keyword {
+    color: #790965;
+}
+.hljs-title.class_ {
+    color: #796509;
+}
+.hljs-number, .hljs-string {
+    color: #a06509;
+}
+.hljs-comment {
+    color: #808080;
+}
+.hljs-title.function_ {
+    color: #79a009;
+}
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: center;
+    color: #ccc;
+    border-right: 1px solid #ccc !important;
+    vertical-align: top;
+    padding-right: 10px !important;
+
+    /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+    padding-left: 10px !important;
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width: 479px) {
+
+}

@@ -1,0 +1,47 @@
+@import '../include/colors';
+@import '../include/mixins';
+
+.page-404 .container {
+    min-height: 380px;
+}
+
+.page-404 h1 {
+    font-size: 3rem;
+}
+.page-404 h2 {
+    font-size: 2rem;
+}
+.page-404 h3 {
+    font-size: 1.5rem;
+}
+.page-404 p {
+    font-size: 16px;
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width: 479px) {
+
+}

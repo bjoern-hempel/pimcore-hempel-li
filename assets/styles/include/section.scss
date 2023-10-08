@@ -1,0 +1,42 @@
+@import './colors';
+@import './mixins';
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+    .section-content.white,
+    .section-content.grey {
+        border-width: 15px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .section-content.white,
+    .section-content.grey {
+        border-width: 15px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .section-content.white,
+    .section-content.grey {
+        border-width: 15px;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .section-content.white,
+    .section-content.grey {
+        border-width: 15px;
+    }
+}

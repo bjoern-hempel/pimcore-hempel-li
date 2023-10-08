@@ -1,0 +1,113 @@
+@import '../include/mixins';
+
+.loader {
+    background: #ffffff;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+
+    .loader-inner {
+        left: 0;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+
+        .loading-spinner {
+            width: 100px;
+            height: 100px;
+            animation: spinner-rotate 2s ease-in-out infinite;
+            -webkit-animation: spinner-rotate 2s ease-in-out infinite;
+            -moz-animation: spinner-rotate 2s ease-in-out infinite;
+            -ms-animation: spinner-rotate 2s ease-in-out infinite;
+            -o-animation: spinner-rotate 2s ease-in-out infinite;
+
+            .spinner {
+                animation:spinner-color 8s ease-in-out infinite , spinner-dash 2s ease-in-out infinite;
+                -webkit-animation: spinner-color 8s ease-in-out infinite , spinner-dash 2s ease-in-out infinite;
+                -moz-animation: spinner-color 8s ease-in-out infinite , spinner-dash 2s ease-in-out infinite;
+                -ms-animation: spinner-color 8s ease-in-out infinite , spinner-dash 2s ease-in-out infinite;
+                -o-animation: spinner-color 8s ease-in-out infinite , spinner-dash 2s ease-in-out infinite;
+                stroke-linecap: round;
+            }
+        }
+    }
+
+    @include keyframes(spinner-rotate) {
+        100% {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+        }
+    }
+
+    @include keyframes(spinner-color) {
+        0%, 50% {
+            stroke: #097965;
+        }
+        50%,
+        70% {
+            stroke: #864be3;
+        }
+        70%,
+        100% {
+            stroke: #097965;
+        }
+    }
+
+    @include keyframes(spinner-dash) {
+        0% {
+            stroke-dasharray: 3, 300;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 100, 300;
+            stroke-dashoffset: -40px;
+        }
+        100% {
+            stroke-dasharray: 100, 300;
+            stroke-dashoffset: -120px;
+        }
+    }
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+@media only screen and (max-width: 479px) {
+
+}
+

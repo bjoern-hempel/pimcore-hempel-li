@@ -1,0 +1,250 @@
+@import '../include/colors';
+@import '../include/mixins';
+
+section.hero {
+    background-color: $mainColor;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+
+    &.auto-height {
+        height: 1300px;
+
+        .header .logo {
+            margin-bottom: auto;
+        }
+    }
+
+    .header {
+        .left-part {
+            float: left;
+        }
+
+        .right-part {
+            float: right;
+        }
+
+        .logo {
+            display: block;
+            margin-left: 40px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+
+            h2 {
+                @include text-uppercase-30();
+                @include text-shadow();
+            }
+        }
+
+        .short-contact {
+            display: block;
+            margin-right: 40px;
+            margin-top: 45px;
+            position: relative;
+            z-index: 1;
+
+            li {
+                display: inline-block;
+                float: right;
+                @include text-shadow();
+
+                &.next {
+                    margin-left: 30px;
+                }
+
+                .light {
+                    opacity: .5;
+
+                    &.selected {
+                        position: relative;
+
+                        &:before {
+                            content: '↓';
+                            position: absolute;
+                            top: -18px;
+                            left: 50%;
+                            margin-left: -3px;
+                        }
+                    }
+                }
+
+                a {
+                    @include text-shadow();
+
+                    &.light {
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                span {
+                    @include text-shadow();
+                }
+            }
+        }
+    }
+
+    .inner-hero {
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+
+        .hero-content {
+            color: #ffffff;
+            position: relative;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+
+            .profile-img {
+                img {
+                    width: 200px;
+                    height: 200px;
+                    border: 8px solid $lightGrey;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+                    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
+                    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
+                    -ms-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
+                    -o-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
+                }
+                .pimcore_editable_image {
+                    margin: 0 auto;
+                }
+            }
+
+            .profile-name h2 {
+                font-size: 30px;
+                color: $lightGrey;
+                text-transform: uppercase;
+                position: relative;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.50);
+
+                span {
+                    font-size: 14px;
+                    display: block;
+                    text-transform: none;
+                    margin-top: 1px;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+    section.hero.auto-height {
+        height: 1000px;
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+    section.hero.auto-height {
+        height: 850px;
+    }
+    .hero-content .profile-img img {
+        height: 200px;
+        width: 200px;
+    }
+    .hero-content .profile-social {
+        bottom: -150px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    section.hero.auto-height {
+        height: 800px;
+    }
+    .hero-content .profile-img img {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    section.hero.auto-height {
+        height: 700px;
+    }
+    .hero-content .profile-img img {
+        height: 200px;
+        width: 200px;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    section.hero.auto-height {
+        height: 700px;
+    }
+    .hero-content .profile-img img {
+        height: 200px;
+        width: 200px;
+        border-width: 8px;
+    }
+    .hero-content .profile-name h2 {
+        font-size: 28px;
+    }
+    .header .short-contact {
+        margin-right: 40px;
+    }
+    .header .short-contact li {
+        display: block;
+        text-align: right;
+        float: none;
+        margin-top: 10px;
+    }
+    .header .short-contact li.next {
+        margin-left: 0;
+    }
+    .header .short-contact li.language-selector {
+        margin-top: -20px;
+        padding-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    section.hero.auto-height {
+        height: 700px;
+    }
+    .header .short-contact {
+        margin-right: 40px;
+    }
+    .header .short-contact li {
+        display: block;
+        text-align: right;
+        float: none;
+        margin-top: 10px;
+    }
+    .header .short-contact li.next {
+        margin-left: 0;
+    }
+    .header .short-contact li.language-selector {
+        margin-top: -20px;
+        padding-top: 20px;
+    }
+    .hero-content .profile-img img {
+        height: 200px;
+        width: 200px;
+        border-width: 8px;
+    }
+    .hero-content .profile-name h2 {
+        font-size: 28px;
+    }
+}

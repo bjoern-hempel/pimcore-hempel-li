@@ -1,0 +1,62 @@
+@import './colors';
+
+.wrapper {
+    position: relative;
+
+    .inner-wrapper {
+        background-color: #fff;
+        margin: 0rem;
+        width: inherit;
+        backface-visibility: hidden;
+        overflow: hidden;
+        position: relative;
+    }
+}
+
+@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
+    .wrapper {
+        .inner-wrapper {
+            margin: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .wrapper {
+        .inner-wrapper {
+            margin: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    .wrapper {
+        .inner-wrapper {
+            margin: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .wrapper {
+        .inner-wrapper {
+            margin: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .wrapper {
+        .inner-wrapper {
+            margin: 0;
+        }
+    }
+}
