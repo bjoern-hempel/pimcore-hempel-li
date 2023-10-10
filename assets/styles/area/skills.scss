@@ -302,11 +302,12 @@
         color: #ffffff;
         padding: 20px;
         border-radius: 4px;
-        display: none;
         z-index: 1000;
         margin-left: -10px;
         font-family: "Lora-Regular", "Helvetica", "Arial", sans-serif;
-        opacity: 0.9;
+        opacity: 0;
+        display: none;
+        transition: opacity 0.2s;
         max-width: 400px;
         line-height: 25px;
         font-size: 14px;
@@ -331,6 +332,8 @@
         }
 
         &[data-show] {
+            opacity: 0.9;
+            transition: opacity 0.2s;
             display: block;
         }
 
