@@ -4,6 +4,9 @@ require('highlightjs-line-numbers.js');
 import Granim from "granim";
 //import highlight from 'highlight.js';
 
+
+window.popper = require('./vendor/popper/popper.min.js');
+
 !function ($, highlight) {
 
     /* Add copy button to pre code blocks (with copy to clipboard functionality) */
@@ -49,6 +52,44 @@ import Granim from "granim";
     $(window).on("load", function () {
         $(".loader-inner").fadeOut();
         $(".loader").delay(200).fadeOut("slow");
+    });
+
+    /* Create popper popups */
+    $('.popper').each(function () {
+        let popper = $(this);
+
+        let section = popper.find('.popper-section');
+        let popup = popper.find('.popper-popup');
+
+        if (section.length <= 0 || popup.length <= 0) return;
+
+        popper.data('popper-instance', window.popper.createPopper(section[0], popup[0], {placement: 'top', modifiers: [
+            {
+                name: 'offset',
+                options: {
+                    offset: [0, 10],
+                },
+            },
+        ]}));
+
+        let appear = function (e) {
+            let popper = $(this);
+            let popup = popper.find('.popper-popup');
+
+            popup.attr('data-show', '');
+            popper.data('popper-instance').update();
+        };
+
+        let disappear = function (e) {
+            let popper = $(this);
+            let popup = popper.find('.popper-popup');
+
+            popup.removeAttr('data-show');
+        };
+
+        popper.on('mouseover', appear);
+        popper.on('click', appear);
+        popper.on('mouseout', disappear);
     });
 
     let mainColor1 = '#097965';

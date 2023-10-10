@@ -13,9 +13,16 @@
                             <div class="block-skills">
                                 <ul class="skills-list">
                                     {% for skillProfessional in skillProfessionals %}
-                                        <li title="{{ skillProfessional.description }}">
-                                            <div class="progress {{ skillProfessional.skillType }}"><h4 class="{{ skillProfessional.rows }}{{ skillProfessional.outer ? ' outer' : '' }}">{{ skillProfessional.name|raw }}</h4>
-                                                <div class="percentage"><span>{{ skillProfessional.scope }}%</span></div>
+                                        <li class="popper">
+                                            <div class="progress {{ skillProfessional.skillType }}">
+                                                <h4 class="{{ skillProfessional.rows }}{{ skillProfessional.outer ? ' outer' : '' }}">{{ skillProfessional.name|raw }}</h4>
+                                                <div class="popper-section percentage">
+                                                    <span>{{ skillProfessional.scope }}%</span>
+                                                </div>
+                                            </div>
+                                            <div class="popper-popup" role="tooltip">
+                                                {{ skillProfessional.description }}
+                                                <div class="popper-arrow" data-popper-arrow></div>
                                             </div>
                                         </li>
                                     {% endfor %}
@@ -26,7 +33,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="block-title mb-80"><h4>{{ 'language-skills'|trans }}</h4></div>
+                        <div class="block-title mb-80">
+                            <h4>{{ 'language-skills'|trans }}</h4>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="block-content mb-80">

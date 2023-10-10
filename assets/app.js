@@ -1,6 +1,7 @@
-/* Simple CSS import */
+/* Vendor imports */
 import './styles/vendor/bootstrap/bootstrap-5.2.3.min.css';
 
+/* Include imports */
 import './styles/include/reset.scss';
 import './styles/include/global.scss';
 import './styles/include/section.scss';
@@ -10,6 +11,7 @@ import './styles/include/wrapper.scss';
 import './styles/include/svg.scss';
 import './styles/include/fortawesome.scss';
 
+/* Area imports */
 import './styles/area/loader.scss';
 import './styles/area/hero.scss';
 import './styles/area/about.scss';
