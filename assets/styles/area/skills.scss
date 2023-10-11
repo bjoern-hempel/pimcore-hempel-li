@@ -333,8 +333,8 @@
 
         &[data-show] {
             opacity: 0.9;
-            transition: opacity 0.2s;
             display: block;
+            transition: opacity 0.2s;
         }
 
         &[data-popper-placement^='top'] > .popper-arrow {
