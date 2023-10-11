@@ -17,8 +17,8 @@
                                 <q cite="https://www.quotes.net/mquote/60268">{{ pimcore_input('quote') }}</q><br>
                                 &mdash; {{ pimcore_input('quote_author') }} &mdash;
                             </p>
-                            <p class="lead mt-40 mb-10">
-                                <span>{{ 'philosophy-development'|trans }}</span><br>
+                            <h3 class="mt-40">{{ 'philosophy-development'|trans }}</h3>
+                            <p class="lead mt-10 mb-10">
                                 {% for aboutPhilosophyDevelopment in aboutPhilosophyDevelopmentMain %}
                                     {% if aboutPhilosophyDevelopment.link is defined %}
                                         {% if aboutPhilosophyDevelopment.bold %}
@@ -51,8 +51,8 @@
                                     {% endif %}
                                 {% endfor %}
                             </p>
-                            <p class="lead mb-40">
-                                <span>{{ 'philosophy-release-management'|trans }}</span><br>
+                            <h3 class="mt-40">{{ 'philosophy-release-management'|trans }}</h3>
+                            <p class="lead mt-10 mb-10">
                                 {% for aboutPhilosophyReleasemanagement in aboutPhilosophyReleasemanagements %}
                                     {% if aboutPhilosophyReleasemanagement.link is not empty %}
                                         <a href="{{ aboutPhilosophyReleasemanagement.link }}">{{ aboutPhilosophyReleasemanagement.name }}</a>{% if not loop.last %} ↷ {% endif %}
