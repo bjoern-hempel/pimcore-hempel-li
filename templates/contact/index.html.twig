@@ -43,14 +43,14 @@
                                                 <div class="column-1">
                                                     <div class="column-inner form-floating">
                                                         {{ form_widget(form.name) }}
-                                                        <label for="contact_form_name">Fore- and Surname</label>
+                                                        <label for="contact_form_name">{{ 'forename-surname'|trans }}</label>
                                                         <div class="field-error">{{ form_errors(form.name) }}</div>
                                                     </div>
                                                 </div>
                                                 <div class="column-2">
                                                     <div class="column-inner form-floating">
                                                         {{ form_widget(form.email) }}
-                                                        <label for="contact_form_email">Email</label>
+                                                        <label for="contact_form_email">{{ 'email'|trans }}</label>
                                                         <div class="field-error">{{ form_errors(form.email) }}</div>
                                                     </div>
                                                 </div>
@@ -59,13 +59,13 @@
 
                                         <div class="mb-20 form-floating">
                                             {{ form_widget(form.subject) }}
-                                            <label for="contact_form_subject">Subject</label>
+                                            <label for="contact_form_subject">{{ 'subject'|trans }}</label>
                                             <div class="field-error">{{ form_errors(form.subject) }}</div>
                                         </div>
 
                                         <div class="mb-20 form-floating">
                                             {{ form_widget(form.message) }}
-                                            <label for="contact_form_message">Type a message here...</label>
+                                            <label for="contact_form_message">{{ 'placeholder.message'|trans }}</label>
                                             <div class="field-error">{{ form_errors(form.message) }}</div>
                                         </div>
 
