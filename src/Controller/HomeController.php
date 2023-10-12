@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Constant\Parameter;
 use Pimcore\Controller\FrontendController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,6 +29,13 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends FrontendController
 {
     /**
+     * @param ParameterBagInterface $parameterBag
+     */
+    public function __construct(private readonly ParameterBagInterface $parameterBag)
+    {
+    }
+
+    /**
      * Renders the / page.
      *
      * @param Request $request
@@ -37,6 +46,7 @@ class HomeController extends FrontendController
     {
         return $this->render('home/index.html.twig', [
             'locale' => $request->getLocale(),
+            'googleApiKey' => $this->parameterBag->get(Parameter::ENVIRONMENT_GOOGLE_API_KEY),
         ]);
     }
 }

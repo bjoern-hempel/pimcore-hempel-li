@@ -27,6 +27,25 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Skill Level</th>
+                                            <th scope="col">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for skillProfessional in skillProfessionals %}
+                                            <tr class="{{ skillProfessional.skillType }}">
+                                                <td>{{ skillProfessional.name|raw }}</td>
+                                                <td>{{ skillProfessional.scope }}%</td>
+                                                <td>{{ skillProfessional.description }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

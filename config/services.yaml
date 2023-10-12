@@ -5,6 +5,7 @@ parameters:
     site_protocol: '%env(SITE_PROTOCOL)%'
     # environment
     environment.host_name: '%env(resolve:ENVIRONMENT_HOST_NAME)%'
+    environment.google_api_key: '%env(resolve:API_GOOGLE_KEY)%'
 
     # customize the full path to external executables
     # normally they are auto-detected by `which program` or auto-discovered in the configured path in

@@ -26,5 +26,7 @@ class Parameter
 
     final public const ENVIRONMENT_HOST_NAME = 'environment.host_name';
 
+    final public const ENVIRONMENT_GOOGLE_API_KEY = 'environment.google_api_key';
+
     final public const MAILER_DNS = 'mailer.dns';
 }
