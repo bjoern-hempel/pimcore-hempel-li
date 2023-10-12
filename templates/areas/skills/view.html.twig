@@ -5,47 +5,51 @@
         <div class="row">
             <div class="col-md-9 offset-md-2 offset-content">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="block-title mb-80"><h4>{{ 'professional-skills'|trans }}</h4></div>
+                    <div class="col-md-12 mb-80">
+                        <div class="block-title"><h4>{{ 'professional-skills'|trans }} (<a id="button-skill-diagram">{{ 'diagram'|trans }}</a> / <a id="button-skill-table">{{ 'table'|trans }}</a>)</h4></div>
                     </div>
                     <div class="col-md-12">
                         <div class="block-content mb-80">
                             <div class="block-skills">
-                                <ul class="skills-list">
-                                    {% for skillProfessional in skillProfessionals %}
-                                        <li class="popper">
-                                            <div class="progress {{ skillProfessional.skillType }}">
-                                                <h4 class="{{ skillProfessional.rows }}{{ skillProfessional.outer ? ' outer' : '' }}">{{ skillProfessional.name|raw }}</h4>
-                                                <div class="popper-section percentage">
-                                                    <span>{{ skillProfessional.scope }}%</span>
-                                                </div>
-                                            </div>
-                                            <div class="popper-popup" role="tooltip">
-                                                {{ skillProfessional.description }}
-                                                <div class="popper-arrow" data-popper-arrow></div>
-                                            </div>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Skill Level</th>
-                                            <th scope="col">Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <div id="skill-diagram" class="visible">
+                                    <ul class="skills-list">
                                         {% for skillProfessional in skillProfessionals %}
-                                            <tr class="{{ skillProfessional.skillType }}">
-                                                <td>{{ skillProfessional.name|raw }}</td>
-                                                <td>{{ skillProfessional.scope }}%</td>
-                                                <td>{{ skillProfessional.description }}</td>
-                                            </tr>
+                                            <li class="popper">
+                                                <div class="progress {{ skillProfessional.skillType }}">
+                                                    <h4 class="{{ skillProfessional.rows }}{{ skillProfessional.outer ? ' outer' : '' }}">{{ skillProfessional.name|raw }}</h4>
+                                                    <div class="popper-section percentage">
+                                                        <span>{{ skillProfessional.scope }}%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="popper-popup" role="tooltip">
+                                                    {{ skillProfessional.description }}
+                                                    <div class="popper-arrow" data-popper-arrow></div>
+                                                </div>
+                                            </li>
                                         {% endfor %}
-                                    </tbody>
-                                </table>
+                                    </ul>
+                                </div>
+
+                                <div id="skill-table" class="hidden">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Skill Level</th>
+                                                <th scope="col">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for skillProfessional in skillProfessionals %}
+                                                <tr>
+                                                    <td>{{ skillProfessional.name|raw }}</td>
+                                                    <td class="{{ skillProfessional.skillType }}">{{ skillProfessional.scope }}%</td>
+                                                    <td>{{ skillProfessional.description }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

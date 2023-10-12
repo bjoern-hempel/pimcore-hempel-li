@@ -85,7 +85,7 @@
     </div>
 </div>
 
-<div style="display: none;" id="googleApiKey" data-google-api-key="{{ googleApiKey }}"><div>
+<div style="display: none;" id="googleApiKey" data-google-api-key="{{ googleApiKey|default('') }}"><div>
 
 {{ encore_entry_script_tags('app-after') }}
 

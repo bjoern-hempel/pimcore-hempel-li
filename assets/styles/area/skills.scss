@@ -358,9 +358,67 @@
 
     }
 }
-.skills table td {
-    text-align: left;
+
+.skills {
+    #button-skill-diagram {
+        cursor: pointer;
+    }
+    #button-skill-table {
+        cursor: pointer;
+    }
 }
+
+.skills table {
+    thead {
+        font-family: "Lora-Bold", "Helvetica", "Arial", sans-serif;
+        background-color: #f0f0f0;
+
+        tr {
+            th {
+                text-align: left;
+            }
+        }
+    }
+
+    tr {
+        td {
+            &.framework {
+                background-color: #ACC7CE;
+            }
+            &.programming-language {
+                background-color: #8DBCB4;
+            }
+            &.software-architecture {
+                background-color: #AE8DB5;
+            }
+            &.tool {
+                background-color: #B3BA94;
+            }
+
+            text-align: left;
+        }
+    }
+}
+
+#skill-diagram {
+    &.visible {
+        display: block;
+    }
+    &.hidden {
+        display: none;
+    }
+}
+
+#skill-table {
+    &.visible {
+        display: block;
+    }
+    &.hidden {
+        display: none;
+    }
+}
+
+
 
 @media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
     .block-quote blockquote {

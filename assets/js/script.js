@@ -9,6 +9,16 @@ window.popper = require('./vendor/popper/popper.min.js');
 
 !function ($, highlight) {
 
+    $('#button-skill-diagram').on('click', function (e) {
+        $('#skill-diagram').removeClass('hidden').addClass('visible');
+        $('#skill-table').removeClass('visible').addClass('hidden');
+    });
+
+    $('#button-skill-table').on('click', function (e) {
+        $('#skill-diagram').removeClass('visible').addClass('hidden');
+        $('#skill-table').removeClass('hidden').addClass('visible');
+    });
+
     /* Add copy button to pre code blocks (with copy to clipboard functionality) */
     $('pre code').each(function (i, block) {
         let code = block.textContent;
