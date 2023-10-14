@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace App\Document\Areabrick;
 
+use App\DataMapper\News\NewsLatestDataMapper;
 use App\Document\Areabrick\Base\AbstractAreabrick;
 use App\Repository\LinkSocialRepository;
 use LogicException;
+use Pimcore\Model\DataObject\News;
 use Pimcore\Model\Document\Editable\Area\Info;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -59,9 +61,15 @@ class Hero extends AbstractAreabrick
             throw new LogicException('Unexpected case for getting request.');
         }
 
+        $news = new News\Listing();
+        $news->setOrderKey('date');
+        $news->setOrder('desc');
+        $news->setLimit(3);
+
         $info->setParams([
             'linkSocials' => $this->socialLinkRepository->all(),
             'locale' => $request->getLocale(),
+            'latestBlogs' => NewsLatestDataMapper::listDataMapperFactory($news->load())->getArray($request),
         ]);
 
         return null;

@@ -659,16 +659,11 @@ a:hover .arrow.right {
 .pd-l0 {
     padding-left: 0 !important;
 }
-
-@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
-    .block-main-title {
-        left: auto;
-        position: relative;
-        -webkit-transform: rotate(0deg);
-        top: -65px;
-        text-align: center;
-        font-size: 80px;
-    }
+.pl-40 {
+    padding-left: 40px !important;
+}
+.pr-40 {
+    padding-right: 40px !important;
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
@@ -678,26 +673,18 @@ a:hover .arrow.right {
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
     .block-main-title {
         left: 3%;
+        font-size: 60px;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
     .block-main-title {
         left: 3%;
+        font-size: 60px;
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-    .block-main-title {
-        left: auto;
-        position: relative;
-        -webkit-transform: rotate(0deg);
-        top: -65px;
-        text-align: center;
-    }
-}
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
     .block-main-title {
         left: auto;
         position: relative;
@@ -708,6 +695,17 @@ a:hover .arrow.right {
     }
 }
 
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .block-main-title {
+        left: auto;
+        position: relative;
+        -webkit-transform: rotate(0deg);
+        top: -65px;
+        text-align: center;
+        font-size: 40px;
+    }
+}
+
 @media only screen and (max-width: 479px) {
     .block-main-title {
         left: auto;
@@ -715,6 +713,6 @@ a:hover .arrow.right {
         -webkit-transform: rotate(0deg);
         top: -65px;
         text-align: center;
-        font-size: 50px;
+        font-size: 27px;
     }
 }

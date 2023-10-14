@@ -19,43 +19,77 @@
             {% set deLink = '/de' %}
         {% endif %}
 
-        <div class="logo left-part"><a href="{{ navStartNode }}{% if locale is same as('de') %}de{% endif %}{% if locale is same as('en') %}en{% endif %}"><h2>it</h2></a></div>
-        <div class="right-part short-contact">
-            <ul>
-                <li class="next language-selector">
-                    {% if locale is same as('de') %}
-                        <span class="light selected">de</span>
-                    {% else %}
-                        <a class="dark" href="{{ deLink }}">de</a>
-                    {% endif %} |
-                    {% if locale is same as('en') %}
-                        <span class="light selected">en</span>
-                    {% else %}
-                        <a class="dark" href="{{ enLink }}">en</a>
-                    {% endif %}
-                </li>
+        <nav class="navbar navbar-expand-lg bg-transparent mb-20">
+            <div class="container-fluid pt-40 pl-40 pr-40">
+                <a class="navbar-brand" href="{{ navStartNode }}{% if locale is same as('de') %}de{% endif %}{% if locale is same as('en') %}en{% endif %}"><h2>it</h2></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav navbar-nav-left me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            {% if currentLink starts with contactLink %}
+                                <a class="nav-link active disabled" href="{{ contactLink }}">{{ 'contact'|trans }}</a>
+                            {% else %}
+                                <a class="nav-link" href="{{ contactLink }}">{{ 'contact'|trans }}</a>
+                            {% endif %}
+                        </li>
 
-                <li class="next">
-                    {% if currentLink starts with blogLink %}
-                        <span class="light selected">{{ 'blog'|trans }}</span>
-                    {% else %}
-                        <a class="dark" href="{{ blogLink }}">{{ 'blog'|trans }}</a>
-                    {% endif %}
-                </li>
+                        {% if currentLink starts with blogLink %}
+                            <li class="nav-item">
+                                <a class="nav-link active disabled" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ 'blog'|trans }}
+                                </a>
+                            </li>
+                        {% else %}
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ 'blog'|trans }}
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ blogLink }}">{{ 'blog-overview'|trans }}</a></li>
+                                    <li><hr class="dropdown-divider"></li>
 
-                <li class="next">
-                    {% if currentLink starts with contactLink %}
-                        <span class="light selected">{{ 'contact'|trans }}</span>
-                    {% else %}
-                        <a class="dark" href="{{ contactLink }}">{{ 'contact'|trans }}</a>
-                    {% endif %}
-                </li>
+                                    {% for latestBlog in latestBlogs %}
+                                        <li><a class="dropdown-item" href="{{ latestBlog.slug }}" title="{{ latestBlog.short_description }}">{{ latestBlog.title }} ({{ latestBlog.posted }})</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
 
-                <li class="next"><a class="dark" href="mailto:{{ 'personal.email'|trans|raw }}">{{ 'personal.email'|trans|raw }}</a></li>
+                    </ul>
 
-                <li><a class="light" href="tel:+49-151-70070706">(+49-151-70070706)</a></li>
-            </ul>
-        </div>
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item no-mobile">
+                            <a class="nav-link light" href="tel:+49-151-70070706">(+49-151-70070706)</a>
+                        </li>
+
+                        <li class="nav-item no-mobile">
+                            <a class="nav-link" href="mailto:{{ 'personal.email'|trans|raw }}">{{ 'personal.email'|trans|raw }}</a>
+                        </li>
+
+                        <li class="nav-item nav-line-before">
+                            {% if locale is same as('de') %}
+                                <a class="nav-link active disabled" href="{{ deLink }}">de</a>
+                            {% else %}
+                                <a class="nav-link" href="{{ deLink }}">de</a>
+                            {% endif %}
+                        </li>
+                        <li class="nav-item nav-line-after">
+                            {% if locale is same as('en') %}
+                                <a class="nav-link active disabled" href="{{ enLink }}">en</a>
+                            {% else %}
+                                <a class="nav-link" href="{{ enLink }}">en</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <!--form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form-->
+                </div>
+            </div>
+        </nav>
     </header>
     <div class="inner-hero">
         <canvas class="background-img gradient-hero"></canvas>

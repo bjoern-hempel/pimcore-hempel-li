@@ -6,12 +6,18 @@
             <div class="col-md-9 offset-md-2 offset-content">
                 <div class="row">
                     <div class="col-md-12 mb-80">
-                        <div class="block-title"><h4>{{ 'professional-skills'|trans }} (<a id="button-skill-diagram">{{ 'diagram'|trans }}</a> / <a id="button-skill-table">{{ 'table'|trans }}</a>)</h4></div>
+                        <div class="block-title">
+                            <h4>
+                                {{ 'professional-skills'|trans }}
+                                (<span class="button-skill-diagram" id="button-skill-diagram"><span class="icon-chart-bar-3"></span>{{ 'diagram'|trans }}</span> /
+                                <span class="button-skill-table" id="button-skill-table"><span class="icon-th-list-2"></span> {{ 'table'|trans }}</span>)
+                            </h4>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="block-content mb-80">
                             <div class="block-skills">
-                                <div id="skill-diagram" class="visible">
+                                <div class="skill-diagram visible" id="skill-diagram">
                                     <ul class="skills-list">
                                         {% for skillProfessional in skillProfessionals %}
                                             <li class="popper">
@@ -30,25 +36,27 @@
                                     </ul>
                                 </div>
 
-                                <div id="skill-table" class="hidden">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Skill Level</th>
-                                                <th scope="col">Description</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for skillProfessional in skillProfessionals %}
-                                                <tr>
-                                                    <td>{{ skillProfessional.name|raw }}</td>
-                                                    <td class="{{ skillProfessional.skillType }}">{{ skillProfessional.scope }}%</td>
-                                                    <td>{{ skillProfessional.description }}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
+                                <div class="skill-table hidden" id="skill-table">
+                                    <div class="col-md-12">
+                                        <div class="block-content mb-80">
+                                            <div class="timeline skills ">
+                                                <div class="timeline-content pt-100">
+                                                    {% for skillProfessional in skillProfessionals %}
+                                                        <div class="block-timeline mb-5">
+                                                            <div class="timeline-date wide-display {{ skillProfessional.skillType }}">
+                                                                <span>{{ skillProfessional.name|replace({'<br>': ' '})|raw }}</span>
+                                                            </div>
+                                                            <div class="timeline-desc">
+                                                                <p class="mb-10 mt-10">{{ skillProfessional.description }}</p>
+                                                                <p class=""><strong>Skill level</strong>: {{ skillProfessional.scope }}%</p>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
