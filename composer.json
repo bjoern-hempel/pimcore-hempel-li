@@ -81,15 +81,15 @@
     "cache:clear": "bin/header/cache 'bin/console cache:clear' 'Clear Cache'",
     "cache:delete": "bin/header/cache 'rm -rf var/cache/*' 'Delete Cache'",
 
-    "docker-composer:up": "docker compose up -d",
-    "docker-composer:composer-install": "docker compose exec php composer install",
-    "docker-composer:pimcore-classes-rebuild": "docker compose exec php bin/console pimcore:deployment:classes-rebuild",
-    "docker-composer:presta-sitemaps-dump": "docker compose exec php bin/console presta:sitemaps:dump",
+    "docker-compose:up": "docker compose up -d",
+    "docker-compose:composer-install": "docker compose exec php composer install",
+    "docker-compose:pimcore-classes-rebuild": "docker compose exec php bin/console pimcore:deployment:classes-rebuild",
+    "docker-compose:presta-sitemaps-dump": "docker compose exec php bin/console presta:sitemaps:dump",
 
     "maildev:change-permissions": "bin/fix-maildev-permissions",
 
-    "db:dump:main:sql": "bin/header/dbdump 'vendor/bin/db-dumper dump' 'Main-DB Dumping (MySQL)'",
-    "db:restore:main:sql": "bin/header/dbinit 'vendor/bin/db-dumper import' 'Main-DB Initialization'",
+    "db:dump:main:sql": "docker-compose run mysqldump bash -c \"cd /var/www/web && vendor/bin/db-dumper dump\"",
+    "db:restore:main:sql": "docker-compose run mysqldump bash -c \"cd /var/www/web && vendor/bin/db-dumper import\"",
 
     "version:main:patch": "vendor/bin/version-manager --patch",
     "version:main:show": "vendor/bin/console version:show",
@@ -230,10 +230,10 @@
     ".test:hardcore": " ",
     ".test:most": " ",
 
-    "docker-composer:up": "Alias of docker compose up -d.",
-    "docker-composer:composer-install": "Alias for composer install, but within the php docker container.",
-    "docker-composer:pimcore-classes-rebuild": "Reuilds the Pimcore classes within the php docker container.",
-    "docker-composer:presta-sitemaps-dump": "Creates the sitemap.xml files within the php docker container. The files will be located at public/*.",
+    "docker-compose:up": "Alias of docker compose up -d.",
+    "docker-compose:composer-install": "Alias for composer install, but within the php docker container.",
+    "docker-compose:pimcore-classes-rebuild": "Reuilds the Pimcore classes within the php docker container.",
+    "docker-compose:presta-sitemaps-dump": "Creates the sitemap.xml files within the php docker container. The files will be located at public/*.",
 
     "maildev:change-permissions": "Fix the maildev permissions to be able to receive emails.",
 
