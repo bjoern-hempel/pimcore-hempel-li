@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.1.4] - 2023-10-21
+
+* Fix composer.json
+
 ### [0.1.3] - 2023-10-21
 
 * Remove /news from footer and add dynamic versions
