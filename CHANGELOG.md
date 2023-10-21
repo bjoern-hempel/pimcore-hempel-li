@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Changelogs
 
+### [0.1.6] - 2023-10-21
+
+* Add deploy script
+* package-lock.json changes
+
 ### [0.1.5] - 2023-10-21
 
 * Remove authentication from production environment
