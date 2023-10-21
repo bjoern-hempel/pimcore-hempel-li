@@ -109,12 +109,10 @@ services:
       - "traefik.enable=true"
       # middleware -> https redirect
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.redirectscheme.scheme=https"
-      # middleware -> basic authentication
-      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_auth.basicauth.users=${GENERAL_BASICAUTH_PRODUCTION}"
       # middleware -> header sameorigin
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.customFrameOptionsValue=sameorigin"
       # middleware -> chain -> with authentication and frame
-      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_with_auth.chain.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_auth,${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_with_auth.chain.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame"
       # middleware -> chain -> frame
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_without_auth.chain.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame"
       # service -> load balancer
