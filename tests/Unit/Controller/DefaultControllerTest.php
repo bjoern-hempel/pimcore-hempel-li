@@ -14,9 +14,12 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Controller;
 
 use App\Controller\DefaultController;
+use App\Repository\LinkSocialRepository;
+use App\Version\Version;
 use Codeception\Test\Unit;
+use Exception;
 use LogicException;
-use PHPUnit\Framework\MockObject\Exception;
+use PHPUnit\Framework\MockObject\Exception as MockObjectException;
 use PHPUnit\Framework\MockObject\MockObject;
 use Pimcore\Config;
 use Pimcore\Templating\TwigDefaultDelegatingEngine;
@@ -42,6 +45,7 @@ class DefaultControllerTest extends Unit
     /**
      * @return void
      * @throws Exception
+     * @throws MockObjectException
      */
     protected function setUp(): void
     {
@@ -55,13 +59,16 @@ class DefaultControllerTest extends Unit
         $container->set('twig', $this->twig);
         $container->set('pimcore.templating', new TwigDefaultDelegatingEngine($this->twig, new Config()));
 
-        $this->controller = new DefaultController();
+        $version = new Version(dirname(__FILE__, 3));
+        $linkSocialRepository = new LinkSocialRepository();
+
+        $this->controller = new DefaultController($version, $linkSocialRepository);
         $this->controller->setContainer($container);
     }
 
     /**
      * @return void
-     * @throws Exception
+     * @throws MockObjectException
      */
     public function testDefaultAction()
     {

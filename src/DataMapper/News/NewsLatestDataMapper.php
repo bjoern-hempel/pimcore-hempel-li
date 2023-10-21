@@ -15,7 +15,6 @@ namespace App\DataMapper\News;
 
 use App\Constant\Timezone;
 use App\DataMapper\Base\AbstractDataMapper;
-use App\DataMapper\ListDataMapper;
 use Exception;
 use LogicException;
 use Pimcore\Model\DataObject\News;

@@ -94,10 +94,11 @@ class Version
     /**
      * Returns the date of version of this application.
      *
+     * @param string $format
      * @return string
      * @throws FileNotFoundException
      */
-    public function getDate(): string
+    public function getDate(string $format = 'l, F d, Y - H:i:s'): string
     {
         $versionFile = $this->getVersionFile();
 
@@ -107,7 +108,7 @@ class Version
             throw new FileNotFoundException($versionFile);
         }
 
-        return date ('l, F d, Y - H:i:s', $mtime);
+        return date ($format, $mtime);
     }
 
     /**
@@ -163,32 +164,73 @@ class Version
     /**
      * Returns the php version of this application.
      *
+     * @param bool $short
      * @return string
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function getVersionPhp(): string
+    public function getVersionPhp(bool $short = false): string
     {
-        return phpversion();
+        $version = phpversion();
+
+        if ($short) {
+            $version = preg_replace('~\.[0-9]+$~', '', $version);
+
+            if (!is_string($version)) {
+                throw new LogicException('Unable to replace string.');
+            }
+        }
+
+        return $version;
     }
 
     /**
      * Returns the symfony version of this application.
      *
+     * @param bool $short
      * @return string
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function getVersionSymfony(): string
+    public function getVersionSymfony(bool $short = false): string
     {
-        return Kernel::VERSION;
+        $version = Kernel::VERSION;
+
+        if ($short) {
+            $version = preg_replace('~\.[0-9]+$~', '', $version);
+
+            if (!is_string($version)) {
+                throw new LogicException('Unable to replace string.');
+            }
+        }
+
+        return $version;
     }
 
     /**
      * Returns the pimcore version of this application.
      *
+     * @param bool $short
      * @return string
-     * @SuppressWarnings(PHPMD.StaticAccess)
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
-    public function getVersionPimcore(): string
+    public function getVersionPimcore(bool $short = false): string
     {
-        return PimcoreVersion::getVersion();
+        $version = PimcoreVersion::getVersion();
+
+        if ($short) {
+            $version = preg_replace('~\.[0-9]+$~', '', $version);
+
+            if (!is_string($version)) {
+                throw new LogicException('Unable to replace string.');
+            }
+
+            $version = str_replace('v', '', $version);
+
+            if (!is_string($version)) {
+                throw new LogicException('Unable to replace string.');
+            }
+        }
+
+        return $version;
     }
 
     /**

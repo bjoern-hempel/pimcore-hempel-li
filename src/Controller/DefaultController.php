@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\FileNotFoundException;
 use App\Repository\LinkSocialRepository;
+use App\Version\Version;
 use LogicException;
 use Pimcore\Bundle\AdminBundle\Controller\Admin\LoginController;
 use Pimcore\Controller\FrontendController;
@@ -30,9 +32,10 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends FrontendController
 {
     /**
+     * @param Version $version
      * @param LinkSocialRepository|null $linkSocialRepository
      */
-    public function __construct(protected LinkSocialRepository|null $linkSocialRepository = null)
+    public function __construct(protected Version $version, protected LinkSocialRepository|null $linkSocialRepository = null)
     {
     }
 
@@ -54,6 +57,7 @@ class DefaultController extends FrontendController
      * @param Request $request
      * @return Response
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @throws FileNotFoundException
      */
     public function footerAction(Request $request): Response
     {
@@ -63,6 +67,11 @@ class DefaultController extends FrontendController
 
         return $this->render('include/footer.html.twig', [
             'linkSocials' => $this->linkSocialRepository->all(),
+            'appVersion' => sprintf('%s (%s)', $this->version->getVersion(), $this->version->getDate('Y-m-d H:i')),
+            'phpVersion' => $this->version->getVersionPhp(true),
+            'symfonyVersion' => $this->version->getVersionSymfony(true),
+            'pimcoreVersion' => $this->version->getVersionPimcore(true),
+            'year' => date('Y'),
         ]);
     }
 

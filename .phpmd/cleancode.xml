@@ -13,12 +13,14 @@
     <rule ref="rulesets/cleancode.xml/StaticAccess">
         <properties>
             <property name="exceptions" description="Comma-separated class name list of exceptions" value="
+                \App\DataMapper\News\NewsLatestDataMapper,
                 \Pimcore\Db,
                 \Pimcore\Model\DataObject\BlogPost,
                 \Pimcore\Model\DataObject\News,
                 \Pimcore\Model\Document\Hardlink\Service,
                 \Pimcore\Model\User,
-                \Pimcore\Tool
+                \Pimcore\Tool,
+                \Pimcore\Version
             " />
             <property name="ignorepattern" description="Ignore methods matching this regex. Example: /^create/i" value="" />
         </properties>
