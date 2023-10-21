@@ -1,110 +1,229 @@
 @import '../include/mixins';
 
-.stamp-profile img {
-    display: block;
-    height: 124px;
-    position: absolute;
-    width: 124px;
-    max-width: 124px;
-    border: 4px solid white;
-    border-radius: 25%;
-    -webkit-border-radius: 25%;
-    -moz-border-radius: 25%;
-    -ms-border-radius: 25%;
-    -o-border-radius: 25%;
-}
-.stamp-profile {
-    height: 132px;
-    position: absolute;
-    width: 132px;
-    right: 14px;
-    top: -63px;
-    border: 4px solid #efefef;
-    border-radius: 25%;
-    -webkit-border-radius: 25%;
-    -moz-border-radius: 25%;
-    -ms-border-radius: 25%;
-    -o-border-radius: 25%;
-}
-.profile-name h2 {
-    font-size: 30px;
-    text-transform: uppercase;
-}
-.profile-name h2 span {
-    font-size: 14px;
-    display: block;
-    text-transform: none;
-    margin-top: 2px;
-    color: #707070;
-}
-.about h3 {
-    font-size: 20px;
-}
-.about p {
-    color: #333333;
-    font-size: 14px;
-}
-.block-content .info-list {
-    background: #fafafa;
-    border: dashed 1px #efefef;
-    padding: 30px;
-    margin-top: 105px;
-}
-.block-content .info-list li {
-    line-height: 28px;
-}
-.block-content .info-list li span {
-    color: #333333;
-}
-
-@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
-
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
-
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
-    .block-content .info-list {
-        padding: 20px;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-}
-
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-
-}
-
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    .block-content .info-list {
-        margin-top: 50px;
-    }
+/*
+ * Desktop first: Extra extra large breakpoint 1400px - max
+ */
+section.about {
     .stamp-profile {
-        display: none;
+        height: 132px;
+        position: absolute;
+        width: 132px;
+        right: 14px;
+        top: -63px;
+        border: 4px solid #efefef;
+        border-radius: 25%;
+        -webkit-border-radius: 25%;
+        -moz-border-radius: 25%;
+
+        img {
+            display: block;
+            height: 124px;
+            position: absolute;
+            width: 124px;
+            max-width: 124px;
+            border: 4px solid white;
+            border-radius: 25%;
+            -webkit-border-radius: 25%;
+            -moz-border-radius: 25%;
+        }
     }
-    .profile-name h2 {
-        font-size: 29px;
+    .block-content {
+        .profile-name {
+            h2 {
+                font-size: 30px;
+                text-transform: uppercase;
+
+                span {
+                    font-size: 14px;
+                    display: block;
+                    text-transform: none;
+                    margin-top: 2px;
+                    color: #707070;
+                }
+            }
+        }
+
+        p.lead-quote {
+
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        p.lead {
+            color: #333333;
+            font-size: 14px;
+        }
+
+        .info-list {
+            background: #fafafa;
+            border: dashed 1px #efefef;
+            padding: 30px;
+            margin-top: 105px;
+
+            li {
+                line-height: 28px;
+
+                span {
+                    color: #333333;
+                }
+            }
+        }
     }
 }
 
-@media only screen and (max-width: 479px) {
-    .block-content .lead {
-        font-size: 19px;
+/*
+ * Extra extra large breakpoint 1400px - max
+ */
+@media only screen and (min-width: 1400px) {
+
+
+    @media (orientation: landscape) {
+
     }
-    .block-content .lead-quote q {
-        font-size: 23px;
+    @media (orientation: portrait) {
+
     }
-    .block-content .info-list {
-        margin-top: 50px;
+}
+
+/*
+ * Extra large breakpoint 1200 - 1399px
+ */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+
+    @media (orientation: landscape) {
+
     }
-    .stamp-profile {
-        display: none;
+    @media (orientation: portrait) {
+
     }
-    .profile-name h2 {
-        font-size: 29px;
+}
+
+/*
+ * Large breakpoint 992px - 1199px
+ */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    section.about {
+        .block-content {
+            .profile-name {
+                h2 {}
+            }
+
+            .info-list {
+                padding: 20px;
+
+                li {
+                    span {}
+                }
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
+}
+
+/*
+ * Medium breakpoint 768px - 991px
+ */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
+}
+
+/*
+ * Small breakpoint 576px - 767px
+ */
+@media only screen and (min-width: 567px) and (max-width: 767px) {
+    section.about {
+        .block-content {
+            .profile-name {
+                h2 {
+                    font-size: 29px;
+                }
+            }
+
+            .info-list {
+                margin-top: 90px;
+
+                li {
+                    line-height: 28px;
+
+                    span {
+                        color: #333333;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
+}
+
+/*
+ * X-Small breakpoint 0 - 575px
+ */
+@media only screen and (min-width: 0px) and (max-width: 575px) {
+    section.about {
+        .stamp-profile {
+            display: none;
+
+            img {}
+        }
+        .block-content {
+            .profile-name {
+                h2 {
+                    font-size: 29px;
+
+                    span {
+                    }
+                }
+            }
+
+            p.lead-quote {
+                q {
+                    font-size: 23px;
+                }
+            }
+
+            h3 {}
+
+            p.lead {
+                font-size: 19px;
+            }
+
+            .info-list {
+                margin-top: 30px;
+                li {
+
+                    span {
+                    }
+                }
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
     }
 }

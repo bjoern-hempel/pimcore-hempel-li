@@ -15,6 +15,7 @@ namespace App\DataMapper\News;
 
 use App\Constant\Timezone;
 use App\DataMapper\Base\AbstractDataMapper;
+use App\DataMapper\ListDataMapper;
 use Exception;
 use LogicException;
 use Pimcore\Model\DataObject\News;
@@ -30,6 +31,25 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class NewsLatestDataMapper extends AbstractDataMapper
 {
+    private const NEWS_LATEST_LIMIT = 3;
+
+    /**
+     * Returns the latest news items.
+     *
+     * @param Request $request
+     * @param int $limit
+     * @return array<int, array<string, mixed>>
+     */
+    public static function getLast(Request $request, int $limit = self::NEWS_LATEST_LIMIT): array
+    {
+        $news = new News\Listing();
+        $news->setOrderKey('date');
+        $news->setOrder('desc');
+        $news->setLimit($limit);
+
+        return NewsLatestDataMapper::listDataMapperFactory($news->load())->getArray($request);
+    }
+
     /**
      * Converts the given ressource to an array.
      *

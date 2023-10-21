@@ -1,10 +1,6 @@
 {% if news is defined and (news|length > 0) %}
     {% for news_item in news %}
-        {% if loop.first %}
-            <div class="row mb-30">
-        {% endif %}
-
-        <div class="col-md-4 col-sm-4">
+        <div class="flex-item">
             <a href="{{ news_item.slug is defined ? news_item.slug : '' }}">
                 <div class="box work {% for tag in news_item.tags %}{{ tag.name is defined ? tag.name : '' }} {% endfor %}">
                     <div class="box-img">{{ (news_item.image is defined ? news_item.image.thumbnail('newsThumbnail').html : '')|raw }}</div>
@@ -29,13 +25,5 @@
                 </div>
             </a>
         </div>
-
-        {% if loop.index % 3 == 0 %}
-            </div><div class="row mb-30">
-        {% endif %}
-
-        {% if loop.last %}
-            </div>
-        {% endif %}
     {% endfor %}
 {% endif %}

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\DataMapper\News\NewsLatestDataMapper;
 use App\Form\ContactFormType;
 use LogicException;
 use Pimcore\Controller\FrontendController;
@@ -57,7 +58,8 @@ class ContactController extends FrontendController
         if (!$form->isSubmitted()) {
             return $this->render('contact/index.html.twig', [
                 'locale' => $request->getLocale(),
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'latestBlogs' => NewsLatestDataMapper::getLast($request),
             ]);
         }
 
@@ -88,7 +90,8 @@ class ContactController extends FrontendController
 
             return $this->render('contact/index.html.twig', [
                 'locale' => $request->getLocale(),
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'latestBlogs' => NewsLatestDataMapper::getLast($request),
             ]);
         }
 

@@ -1,18 +1,22 @@
 @import '../include/colors';
 @import '../include/mixins';
 
+/*
+ * Desktop first: Extra extra large breakpoint 1400px - max
+ */
 section.hero {
     background-color: $mainColor;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
-    padding: 0;
+    padding: 0 0 10px 0;
     position: relative;
-    overflow: hidden;
 
     &.auto-height {
         height: 1300px;
+        overflow: hidden;
+        padding: 0;
 
         .header .logo {
             margin-bottom: auto;
@@ -112,28 +116,6 @@ section.hero {
             }
         }
 
-        .left-part {
-            float: left;
-        }
-
-        .right-part {
-            float: right;
-        }
-
-        .logo {
-            display: block;
-            margin-left: 40px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-
-            h2 {
-                @include text-uppercase-30();
-                @include text-shadow();
-            }
-        }
-
         .short-contact {
             display: block;
             margin-right: 40px;
@@ -198,10 +180,7 @@ section.hero {
             text-align: center;
             top: 50%;
             transform: translateY(-50%);
-            -webkit-transform: translateY(-50%);
-            -moz-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
-            -o-transform: translateY(-50%);
 
             .profile-img {
                 img {
@@ -211,7 +190,6 @@ section.hero {
                     box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
                     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
                     -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
-                    -ms-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
                     -o-box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
                 }
                 .pimcore_editable_image {
@@ -219,130 +197,497 @@ section.hero {
                 }
             }
 
-            .profile-name h2 {
-                font-size: 30px;
-                color: $lightGrey;
-                text-transform: uppercase;
-                position: relative;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.50);
+            .profile-name {
+                h2 {
+                    font-size: 30px;
+                    color: $lightGrey;
+                    text-transform: uppercase;
+                    position: relative;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.50);
 
-                span {
-                    font-size: 14px;
-                    display: block;
-                    text-transform: none;
-                    margin-top: 1px;
-                    color: #ffffff;
+                    span {
+                        font-size: 14px;
+                        display: block;
+                        text-transform: none;
+                        margin-top: 1px;
+                        color: #ffffff;
+                    }
                 }
             }
         }
     }
 }
 
-@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+/*
+ * Extra extra large breakpoint 1400px - max
+ */
+@media only screen and (min-width: 1400px) {
+
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
 
 }
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
-    section.hero.auto-height {
-        height: 1000px;
+/*
+ * Extra large breakpoint 1200 - 1399px
+ */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    section.hero {
+        &.auto-height {
+            height: 850px;
+        }
+
+        .header {
+            nav.navbar {
+                a.navbar-brand {
+                    h2 {}
+                }
+
+                .navbar-collapse {
+                    .navbar-nav {
+                        li.nav-item {
+                            a.nav-link {
+                                &.disabled, &.light, &.active {}
+                                &.active {
+                                    &:before {}
+                                }
+                            }
+
+                            &.dropdown {
+                                ul.dropdown-menu {
+                                    li {
+                                        a.dropdown-item {}
+                                    }
+                                }
+                            }
+                        }
+
+                        &.navbar-nav-right {
+                            li.nav-item {
+                                &.nav-line-before {
+                                    .nav-link {
+                                        &:after {
+                                        }
+                                    }
+                                }
+
+                                &.nav-line-after {
+                                    .nav-link {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .short-contact {
+                li {
+                    &.next {
+                    }
+                }
+            }
+        }
+
+        .inner-hero {
+            .hero-content {
+                .profile-img {
+                    img {
+                        height: 200px;
+                        width: 200px;
+                    }
+                    .pimcore_editable_image {}
+                }
+                .profile-name h2 {
+                    span {}
+                }
+                .profile-social {
+                    bottom: -150px;
+                }
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+        section.hero {
+            &.auto-height {
+                height: 1000px;
+            }
+        }
+    }
+    @media (orientation: portrait) {
+
+    }
+
+}
+
+/*
+ * Large breakpoint 992px - 1199px
+ */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    section.hero {
+        &.auto-height {
+            height: 800px;
+        }
+
+        .header {
+            nav.navbar {
+                a.navbar-brand {
+                    h2 {}
+                }
+
+                .navbar-collapse {
+                    .navbar-nav {
+                        li.nav-item {
+                            a.nav-link {
+                                &.disabled, &.light, &.active {}
+                                &.active {
+                                    &:before {}
+                                }
+                            }
+
+                            &.dropdown {
+                                ul.dropdown-menu {
+                                    li {
+                                        a.dropdown-item {}
+                                    }
+                                }
+                            }
+                        }
+
+                        &.navbar-nav-right {
+                            li.nav-item {
+                                &.nav-line-before {
+                                    .nav-link {
+                                        &:after {}
+                                    }
+                                }
+
+                                &.nav-line-after {
+                                    .nav-link {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .short-contact {
+                li {
+                    &.next {}
+                }
+            }
+        }
+
+        .inner-hero {
+            .hero-content {
+                .profile-img {
+                    img {
+                        height: 200px;
+                        width: 200px;
+                    }
+                    .pimcore_editable_image {}
+                }
+                .profile-name h2 {
+                    span {}
+                }
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
     }
 }
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
-    section.hero.auto-height {
-        height: 850px;
+/*
+ * Medium breakpoint 768px - 991px
+ */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    section.hero {
+        &.auto-height {
+            height: 700px;
+        }
+
+        .header {
+            nav.navbar {
+                a.navbar-brand {
+                    h2 {}
+                }
+
+                .navbar-collapse {
+                    .navbar-nav {
+                        li.nav-item {
+                            a.nav-link {
+                                &.disabled, &.light, &.active {}
+                                &.active {
+                                    &:before {}
+                                }
+                            }
+
+                            &.dropdown {
+                                ul.dropdown-menu {
+                                    li {
+                                        a.dropdown-item {}
+                                    }
+                                }
+                            }
+                        }
+
+                        &.navbar-nav-right {
+                            li.nav-item {
+                                &.nav-line-before {
+                                    .nav-link {
+                                        &:after {}
+                                    }
+                                }
+
+                                &.nav-line-after {
+                                    .nav-link {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .short-contact {
+                li {
+                    &.next {}
+                }
+            }
+        }
+
+        .inner-hero {
+            .hero-content {
+                .profile-img {
+                    img {
+                        height: 200px;
+                        width: 200px;
+                    }
+                    .pimcore_editable_image {}
+                }
+                .profile-name h2 {
+                    span {}
+                }
+            }
+        }
     }
-    .hero-content .profile-img img {
-        height: 200px;
-        width: 200px;
+
+    @media (orientation: landscape) {
+
     }
-    .hero-content .profile-social {
-        bottom: -150px;
+    @media (orientation: portrait) {
+
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-    section.hero.auto-height {
-        height: 800px;
+/*
+ * Small breakpoint 576px - 767px
+ */
+@media only screen and (min-width: 567px) and (max-width: 767px) {
+    section.hero {
+        &.auto-height {
+            height: 700px;
+        }
+
+        .header {
+            nav.navbar {
+                a.navbar-brand {
+                    h2 {}
+                }
+
+                .navbar-collapse {
+                    .navbar-nav {
+                        li.nav-item {
+                            a.nav-link {
+                                &.disabled, &.light, &.active {}
+                                &.active {
+                                    &:before {}
+                                }
+                            }
+
+                            &.dropdown {
+                                ul.dropdown-menu {
+                                    li {
+                                        a.dropdown-item {}
+                                    }
+                                }
+                            }
+                        }
+
+                        &.navbar-nav-right {
+                            li.nav-item {
+                                &.nav-line-before {
+                                    .nav-link {
+                                        &:after {}
+                                    }
+                                }
+
+                                &.nav-line-after {
+                                    .nav-link {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .short-contact {
+                margin-right: 40px;
+
+                li {
+                    display: block;
+                    text-align: right;
+                    float: none;
+                    margin-top: 10px;
+
+                    &.next {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+
+        .inner-hero {
+            .hero-content {
+                .profile-img {
+                    img {
+                        height: 200px;
+                        width: 200px;
+                        border-width: 8px;
+                    }
+                    .pimcore_editable_image {}
+                }
+                .profile-name {
+                    h2 {
+                        font-size: 28px;
+                        span {}
+                    }
+                }
+                .profile-social {}
+            }
+        }
     }
-    .hero-content .profile-img img {
-        height: 250px;
-        width: 250px;
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-    section.hero.auto-height {
-        height: 700px;
+/*
+ * X-Small breakpoint 0 - 575px
+ */
+@media only screen and (min-width: 0px) and (max-width: 575px) {
+    section.hero {
+        &.auto-height {
+            height: 700px;
+        }
+
+        .header {
+            nav.navbar {
+                a.navbar-brand {
+                    h2 {}
+                }
+
+                .navbar-collapse {
+                    .navbar-nav {
+                        li.nav-item {
+                            a.nav-link {
+                                &.disabled, &.light, &.active {}
+                                &.active {
+                                    &:before {}
+                                }
+                            }
+
+                            &.dropdown {
+                                ul.dropdown-menu {
+                                    li {
+                                        a.dropdown-item {
+                                            white-space: break-spaces;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &.navbar-nav-right {
+                            li.nav-item {
+                                &.nav-line-before {
+                                    .nav-link {
+                                        &:after {}
+                                    }
+                                }
+
+                                &.nav-line-after {
+                                    .nav-link {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .short-contact {
+                margin-right: 40px;
+
+                li {
+                    display: block;
+                    text-align: right;
+                    float: none;
+                    margin-top: 10px;
+
+                    &.next {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+
+        .inner-hero {
+            .hero-content {
+                .profile-img {
+                    img {
+                        height: 200px;
+                        width: 200px;
+                        border-width: 8px;
+                    }
+                    .pimcore_editable_image {}
+                }
+                .profile-name {
+                    h2 {
+                        font-size: 28px;
+                        span {}
+                    }
+                }
+                .profile-social {}
+            }
+        }
     }
-    .hero-content .profile-img img {
-        height: 200px;
-        width: 200px;
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
     }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    section.hero.auto-height {
-        height: 700px;
-    }
-    .hero-content .profile-img img {
-        height: 200px;
-        width: 200px;
-        border-width: 8px;
-    }
-    .hero-content .profile-name h2 {
-        font-size: 28px;
-    }
-    .header .short-contact {
-        margin-right: 40px;
-    }
-    .header .short-contact li {
-        display: block;
-        text-align: right;
-        float: none;
-        margin-top: 10px;
-    }
-    .header .short-contact li.next {
-        margin-left: 0;
-    }
-    .header .short-contact li.language-selector {
-        margin-top: -20px;
-        padding-top: 20px;
-    }
-}
-
-@media only screen and (max-width: 479px) {
-    section.hero.auto-height {
-        height: 700px;
-    }
-    .header .short-contact {
-        margin-right: 40px;
-    }
-    .header .short-contact li {
-        display: block;
-        text-align: right;
-        float: none;
-        margin-top: 10px;
-    }
-    .header .short-contact li.next {
-        margin-left: 0;
-    }
-    .header .short-contact li.language-selector {
-        margin-top: -20px;
-        padding-top: 20px;
-    }
-    .hero-content .profile-img img {
-        height: 200px;
-        width: 200px;
-        border-width: 8px;
-    }
-    .hero-content .profile-name h2 {
-        font-size: 28px;
-    }
-}
-
-/* Bootstrap breakpoint */
-@media only screen and (max-width: 992px) {
+/*
+ * Bootstrap (range) breakpoint 0 - 991px
+ */
+@media only screen and (min-width: 0px) and (max-width: 991px) {
     section.hero {
         .header {
             nav.navbar {

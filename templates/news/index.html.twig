@@ -7,8 +7,8 @@
         {% include 'areas/hero/view.html.twig' with { locale: locale, simple_mode: true } %}
     {% endif %}
 
-    <section id="news" class="works pt-100 pb-100">
-        <div class="container section-content pt-100 pb-100 white news-search">
+    <section id="news" class="work pt-100 pb-100">
+        <div class="container section-content pt-100 pb-70 white news-search">
             <div class="block-main-title"><span class="uppercase">{{ 'blog'|trans }}.</span></div>
             <div class="row">
                 <div class="col-md-9 offset-md-2 offset-content">
@@ -16,17 +16,17 @@
                     <div class="row mb-80">
                         <div class="col-md-12 mb-15">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-7 news-search-left">
                                     <div class="block-title">
                                         <h4 class="mb-15">{{ 'blog-overview'|trans }}</h4>
                                     </div>
                                 </div>
-                                <div class="col-md-4 text-right">
+                                <div class="col-md-5 news-search-right">
                                     <form class="news-search-form">
                                         <div class="input-container" style="">
-                                            <div style="height: 40px;" class="form-floating">
-                                                <input style="height: 40px; padding: 14px 10px 0px; font-size: 14px;" type="text" id="search" name="query" required="required" class="form-control" placeholder="Search news" value="{{ app.request.get('query', '') }}">
-                                                <label style="padding: 7px 10px;" for="search">Search news</label>
+                                            <div class="form-floating">
+                                                <input type="text" id="search" name="query" required="required" class="form-control" placeholder="Search news" value="{{ app.request.get('query', '') }}">
+                                                <label for="search">Search news</label>
                                             </div>
                                             <button type="submit" class="btn btn-primary">{{ 'search'|trans }}</button>
                                         </div>
@@ -50,16 +50,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row text-center news">
-                        <div class="col-md-12">
-                            <!-- NEWS CARDS START -->
-                            {% if news|length > 0 %}
-                                {% include '_partials/news_cards.html.twig' %}
-                            {% else %}
-                                <div class="row mb-30"><b>Try another keyword?</b> No results found.</div>
-                            {% endif %}
-                            <!-- NEWS CARDS END -->
-                        </div>
+                    <div class="row text-center news flex-container">
+                        <!-- NEWS CARDS START -->
+                        {% if news|length > 0 %}
+                            {% include '_partials/news_cards.html.twig' %}
+                        {% else %}
+                            <div class="row mb-30"><b>Try another keyword?</b> No results found.</div>
+                        {% endif %}
+                        <!-- NEWS CARDS END -->
                     </div>
                     <!-- NEWS LISTING END -->
 

@@ -1,47 +1,76 @@
 @import '../include/colors';
 @import '../include/mixins';
 
-.box.work h4 {
-    padding-left: 10px;
-    padding-right: 10px;
+/*
+ * Desktop first: Extra extra large breakpoint 1400px - max
+ */
+section.work {
+    .container {
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+
+            .flex-item {
+                width: calc(33.33%);
+                padding-bottom: 24px;
+            }
+        }
+
+        .box.work {
+            .box-img {
+                height: 140px;
+
+                img {
+                    height: 140px;
+                }
+
+                img, source {
+                    object-fit: cover;
+                }
+            }
+            .box-content {
+                h4 {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+
+                span.title-description {
+                    display: block;
+                    height: 120px;
+
+                    span.title {
+                        display: block;
+                        font-family: Montserrat-SemiBold,Helvetica,Arial,sans-serif;
+                    }
+
+                    span.description {
+                        display: block;
+                        font-size: 13px;
+                        color: #666666;
+                        margin-top: 5px;
+                        font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
+                    }
+                }
+
+                span.category {
+                    display: block;
+                    font-size: 13px;
+                    color: #999999;
+                    margin-top: 5px;
+                    font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
+                }
+
+                span.date {
+                    display: block;
+                    font-size: 11px;
+                    color: #666666;
+                    margin-top: 3px;
+                }
+            }
+        }
+    }
 }
-.box.work h4 span.title-description {
-    display: block;
-    height: 120px;
-}
-.box.work h4 span.title {
-    display: block;
-    font-family: Montserrat-SemiBold,Helvetica,Arial,sans-serif;
-}
-.box.work h4 span.description {
-    display: block;
-    font-size: 13px;
-    color: #666666;
-    margin-top: 5px;
-    font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
-}
-.box.work h4 span.category {
-    display: block;
-    font-size: 13px;
-    color: #999999;
-    margin-top: 5px;
-    font-family: 'Lora-Italic', "Helvetica", "Arial", sans-serif;
-}
-.box.work h4 span.date {
-    display: block;
-    font-size: 11px;
-    color: #666666;
-    margin-top: 3px;
-}
-.box.work .box-img {
-    height: 140px;
-}
-.box.work .box-img img, .box.work .box-img source {
-    object-fit: cover;
-}
-.box.work .box-img img {
-    height: 140px;
-}
+
 .block-filter ul {
     display: inline-block;
     position: relative;
@@ -100,38 +129,108 @@
     z-index: 12;
 }
 
-@media only screen and (min-device-width: 720px) and (max-device-width: 1280px) and (orientation: portrait) {
+/*
+ * Extra extra large breakpoint 1400px - max
+ */
+@media only screen and (min-width: 1400px) {
 
-}
+    @media (orientation: landscape) {
 
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+    }
+    @media (orientation: portrait) {
 
-}
-
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: portrait) {
-
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
-}
-
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-    .box.work h3 span.title {
-        height: 90px;
     }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    .box {
-        margin-bottom: 30px;
+/*
+ * Extra large breakpoint 1200 - 1399px
+ */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    @media (orientation: landscape) {
+
     }
-    .col-md-12 .row:last-child .col-md-4:last-child .box {
-        margin-bottom: 0 !important;
+    @media (orientation: portrait) {
+
     }
-    .works .row.mb-30 {
-        margin-bottom: 0 !important;
+}
+
+/*
+ * Large breakpoint 992px - 1199px
+ */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    section.work {
+        .container {
+            .flex-container {
+                .flex-item {
+                    width: calc(50%);
+                }
+            }
+
+            .box.work {
+
+            }
+        }
     }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
+}
+
+/*
+ * Medium breakpoint 768px - 991px
+ */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    section.work {
+        .container {
+            .flex-container {
+                .flex-item {
+                    width: calc(50%);
+                }
+            }
+
+            .box.work {
+                h3 {
+                    span.title {
+                        height: 90px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
+}
+
+/*
+ * Small breakpoint 576px - 767px
+ */
+@media only screen and (min-width: 567px) and (max-width: 767px) {
+    section.work {
+        .container {
+            padding-bottom: 6px !important;
+
+            .flex-container {
+                .flex-item {
+                    width: calc(50%);
+                }
+            }
+
+            .box.work {
+
+            }
+        }
+    }
+
     .filter li {
         display: block;
         margin: 40px 0;
@@ -142,18 +241,36 @@
     .filter li:last-child {
         margin-bottom: 0;
     }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
+    }
 }
 
-@media only screen and (max-width: 479px) {
-    .box {
-        margin-bottom: 30px;
+/*
+ * X-Small breakpoint 0 - 575px
+ */
+@media only screen and (min-width: 0px) and (max-width: 575px) {
+    section.work {
+        .container {
+            padding-bottom: 0 !important;
+
+            .flex-container {
+                .flex-item {
+                    width: calc(100%);
+                    padding-bottom: 30px;
+                }
+            }
+
+            .box.work {
+
+            }
+        }
     }
-    .col-md-12 .row:last-child .col-md-4:last-child .box {
-        margin-bottom: 0 !important;
-    }
-    .works .row.mb-30 {
-        margin-bottom: 0 !important;
-    }
+
     .filter li {
         display: block;
         margin: 40px 0;
@@ -163,5 +280,12 @@
     }
     .filter li:last-child {
         margin-bottom: 0;
+    }
+
+    @media (orientation: landscape) {
+
+    }
+    @media (orientation: portrait) {
+
     }
 }
