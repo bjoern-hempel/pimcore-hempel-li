@@ -109,10 +109,13 @@ services:
       - "traefik.enable=true"
       # middleware -> https redirect
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.redirectscheme.scheme=https"
-      # middleware -> header sameorigin
-      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.customFrameOptionsValue=sameorigin"
-      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.stsSeconds=31536000"
-      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.contentSecurityPolicy=default-src 'self' hempel.li www.hempel.li maps.googleapis.com; script-src 'self' hempel.li www.hempel.li matomo.ixno.de maps.googleapis.com 'sha256-HaCR0r0Mj7WkQh9fR01/g3WI0c4vUyJp4urY3EynVXg='; style-src 'self' 'unsafe-inline' hempel.li www.hempel.li fonts.googleapis.com; img-src 'self' data: hempel.li www.hempel.li maps.googleapis.com maps.gstatic.com; font-src 'self' hempel.li www.hempel.li fonts.gstatic.com; connect-src 'self' hempel.li www.hempel.li matomo.ixno.de maps.googleapis.com"
+      # middleware -> security headers
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.customFrameOptionsValue=${SECURITY_HEADER_X_FRAME_OPTIONS}"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.stsSeconds=${SECURITY_HEADER_STRICT_TRANSPORT_SECURITY}"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.contentSecurityPolicy=default-src ${SECURITY_HEADER_CONTENT_SECURITY_POLICY_DEFAULT_SRC}; script-src ${SECURITY_HEADER_CONTENT_SECURITY_POLICY_SCRIPT_SRC}; style-src ${SECURITY_HEADER_CONTENT_SECURITY_POLICY_STYLE_SRC}; img-src ${SECURITY_HEADER_CONTENT_SECURITY_POLICY_IMG_SRC}; font-src ${SECURITY_HEADER_CONTENT_SECURITY_POLICY_FONT_SRC}; connect-src ${SECURITY_HEADER_CONTENT_SECURITY_POLICY_CONNECT_SRC}"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.contentTypeNosniff=${SECURITY_HEADER_X_CONTENT_TYPE_OPTIONS}"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.referrerPolicy=${SECURITY_HEADER_REFERRER_POLICY}"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.permissionsPolicy=${SECURITY_HEADER_PERMISSIONS_POLICY}"
       # middleware -> chain -> with authentication and frame
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_with_auth.chain.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame"
       # middleware -> chain -> frame
@@ -123,11 +126,11 @@ services:
       # router -> http layer -> redirect https
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.entrypoints=web"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.rule=Host(`www.${URL_PRODUCTION}`)"
-      - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https"
+      - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https,${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_without_auth"
       # router -> https layer -> GET, POST, etc.
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.entrypoints=websecure"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.rule=Host(`www.${URL_PRODUCTION}`) && Method(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)"
-      - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_with_auth"
+      - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_without_auth"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.service=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https_lb"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.tls=true"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.tls.certresolver=letsencryptresolver"
