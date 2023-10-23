@@ -129,7 +129,7 @@ services:
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_http.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https,${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_without_auth"
       # router -> https layer -> GET, POST, etc.
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.entrypoints=websecure"
-      - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.rule=Host(`www.${URL_PRODUCTION}`) && Method(`GET`, `POST`, `PUT`, `PATCH`, `DELETE`)"
+      - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.rule=Host(`www.${URL_PRODUCTION}`)"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_without_auth"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.service=${NAMESPACE_UNDERLINE_DEVELOPMENT}_https_lb"
       - "traefik.http.routers.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.tls=true"
