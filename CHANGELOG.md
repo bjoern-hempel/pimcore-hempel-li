@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Mobile and frontend refactoring
   * Increase font-size within work and news tiles; Image to object-fit cover
   * Fix js errors (missing elements); Fix smooth scrolling
-  * Fix search design with floating labels; Fix 404 error page design; Alow empty about add within news/blogs -> use author information instead
+  * Fix search design with floating labels; Fix 404 error page design; Allow empty about add within news/blogs -> use author information instead
   * Add popperjs configuration and setup
   * Add line numbers to highlight.js; Switch to bootstrap 5.2
   * Fix symfony toolbar http -> https issue

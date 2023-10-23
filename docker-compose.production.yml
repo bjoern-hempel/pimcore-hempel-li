@@ -111,6 +111,8 @@ services:
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_https.redirectscheme.scheme=https"
       # middleware -> header sameorigin
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.customFrameOptionsValue=sameorigin"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame.headers.contentSecurityPolicy=default-src 'self' hempel.li www.hempel.li maps.googleapis.com; script-src 'self' hempel.li www.hempel.li matomo.ixno.de maps.googleapis.com 'sha256-HaCR0r0Mj7WkQh9fR01/g3WI0c4vUyJp4urY3EynVXg='; style-src 'self' 'unsafe-inline' hempel.li www.hempel.li fonts.googleapis.com; img-src 'self' data: hempel.li www.hempel.li maps.googleapis.com maps.gstatic.com; font-src 'self' hempel.li www.hempel.li fonts.gstatic.com; connect-src 'self' hempel.li www.hempel.li matomo.ixno.de maps.googleapis.com"
       # middleware -> chain -> with authentication and frame
       - "traefik.http.middlewares.${NAMESPACE_UNDERLINE_DEVELOPMENT}_chain_with_auth.chain.middlewares=${NAMESPACE_UNDERLINE_DEVELOPMENT}_frame"
       # middleware -> chain -> frame
