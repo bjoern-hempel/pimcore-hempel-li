@@ -109,7 +109,7 @@ readonly class SecurityHeaderListener
         $environment = $event->getRequest()->server->get('APP_ENV');
 
         if ($environment !== 'dev') {
-            $scriptSrc .= sprintf(' \'%s\'', $this->nonceScript);
+            $scriptSrc .= sprintf(' \'nonce-%s\'', $this->nonceScript);
         }
 
         $response->headers->set('Content-Security-Policy', sprintf(
