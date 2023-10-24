@@ -106,6 +106,12 @@ readonly class SecurityHeaderListener
             throw new LogicException('The security csp header was given in wrong format.');
         }
 
+        $environment = $event->getRequest()->server->get('APP_ENV');
+
+        if ($environment !== 'dev') {
+            $scriptSrc .= sprintf(' \'%s\'', $this->nonceScript);
+        }
+
         $response->headers->set('Content-Security-Policy', sprintf(
             'script-src %s; style-src %s; img-src %s; font-src %s; connect-src %s',
             $scriptSrc,
