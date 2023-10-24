@@ -157,7 +157,7 @@ readonly class SecurityHeaderListener
             throw new LogicException('The strict transport security was given in wrong format.');
         }
 
-        $response->headers->set('Strict-Transport-Security', $strictTransportSecurity);
+        $response->headers->set('Strict-Transport-Security', sprintf('max-age=%s', $strictTransportSecurity));
     }
 
     /**
