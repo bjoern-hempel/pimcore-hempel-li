@@ -35,17 +35,18 @@
     "twig/markdown-extra": "^3.7"
   },
   "require-dev": {
-    "ixnode/bash-db-dumper": "^0.1",
-    "ixnode/bash-version-manager": "^0.1",
     "codeception/codeception": "^5.0.3",
     "codeception/module-symfony": "^3.1.0",
     "friendsofphp/php-cs-fixer": "^3.26",
+    "ixnode/bash-db-dumper": "^0.1",
+    "ixnode/bash-version-manager": "^0.1",
     "jetbrains/phpstorm-attributes": "^1.0",
     "phpmd/phpmd": "^2.13",
     "phpstan/phpstan": "^1.10",
     "povils/phpmnd": "^3.2",
     "rector/rector": "^0.18.3",
-    "symfony/phpunit-bridge": "^6.3"
+    "symfony/phpunit-bridge": "^6.3",
+    "symfony/profiler-pack": "^1.0"
   },
   "suggest": {
     "pimcore/data-hub": "Universal data interface for GraphQL, CSV and other formats"

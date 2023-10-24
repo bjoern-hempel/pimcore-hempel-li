@@ -12,6 +12,10 @@ html {
         a {
             color: $mainColor;
         }
+
+        #googleApiKey {
+            display: none;
+        }
     }
 }
 

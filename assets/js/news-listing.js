@@ -1,10 +1,5 @@
 'use strict';
 $(document).ready(function () {
-    $('.categories-select').select2({
-        placeholder: 'Select categories',
-        multiple: true
-    });
-
     $(document).on('change', '.news-sort-by, .news-per-page', function () {
         if ($(this).hasClass('news-sort-by')) {
             $('.news-sort-by-hidden').val($(this).val());

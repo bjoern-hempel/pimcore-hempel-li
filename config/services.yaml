@@ -6,6 +6,17 @@ parameters:
     # environment
     environment.host_name: '%env(resolve:ENVIRONMENT_HOST_NAME)%'
     environment.google_api_key: '%env(resolve:API_GOOGLE_KEY)%'
+    # security headers
+    security_header.csp.script_src: '%env(resolve:SECURITY_HEADER_CONTENT_SECURITY_POLICY_SCRIPT_SRC)%'
+    security_header.csp.style_src: '%env(resolve:SECURITY_HEADER_CONTENT_SECURITY_POLICY_STYLE_SRC)%'
+    security_header.csp.img_src: '%env(resolve:SECURITY_HEADER_CONTENT_SECURITY_POLICY_IMG_SRC)%'
+    security_header.csp.font_src: '%env(resolve:SECURITY_HEADER_CONTENT_SECURITY_POLICY_FONT_SRC)%'
+    security_header.csp.connect_src: '%env(resolve:SECURITY_HEADER_CONTENT_SECURITY_POLICY_CONNECT_SRC)%'
+    security_header.referrer_policy: '%env(resolve:SECURITY_HEADER_REFERRER_POLICY)%'
+    security_header.strict_transport_security: '%env(resolve:SECURITY_HEADER_STRICT_TRANSPORT_SECURITY)%'
+    security_header.x_content_type_options: '%env(bool:SECURITY_HEADER_X_CONTENT_TYPE_OPTIONS)%'
+    security_header.x_frame_options: '%env(resolve:SECURITY_HEADER_X_FRAME_OPTIONS)%'
+    security_header.permissions_policy: '%env(resolve:SECURITY_HEADER_PERMISSIONS_POLICY)%'
 
     # customize the full path to external executables
     # normally they are auto-detected by `which program` or auto-discovered in the configured path in
@@ -110,6 +121,11 @@ services:
     App\EventListener\PimcoreAdminListener:
         tags:
             - { name: kernel.event_listener, event: pimcore.bundle_manager.paths.js, method: addJSFiles }
+
+    # Register EventListener onKernelResponse
+    App\EventListener\SecurityHeaderListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 
 
     # Configures the League\CommonMark extensions
